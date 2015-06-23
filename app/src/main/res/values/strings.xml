@@ -9,5 +9,6 @@
     <string name="title_singleQuestion">Single Question</string>
     <string name="title_exam">Exam</string>
     <string name="title_settings">Settings</string>
+    <string name="default_server">Default server</string>
 
 </resources>
