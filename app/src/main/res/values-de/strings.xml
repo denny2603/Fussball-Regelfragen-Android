@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Überschriften -->
+    <string name="title_singleQuestion">Einzelfragen</string>
+    <string name="title_exam">Prüfung</string>
+    <string name="title_settings">Einstellungen</string>
+
+</resources>

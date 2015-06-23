@@ -25,5 +25,5 @@ dependencies {
     // Android support
     compile 'com.android.support:appcompat-v7:22.2.0'
 
-    compile 'com.pnikosis:materialish-progress:1.5' // A material style progress wheel compatible with Android 2.3 (Apache license)
+    compile 'com.pnikosis:materialish-progress:1.5' // A material style progress wheel compatible with Android 2.3 (Apache License v2)
 }
