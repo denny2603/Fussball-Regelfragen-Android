@@ -19,6 +19,11 @@ public abstract class Question {
         return id;
     }
 
+    /**
+     * Calculates the faults for this particular question
+     *
+     * @return 0 if everything is correct, 0.5 if only disciplinary sanction is wrong, 1 otherwise
+     */
     public abstract double getFaults();
 
 }

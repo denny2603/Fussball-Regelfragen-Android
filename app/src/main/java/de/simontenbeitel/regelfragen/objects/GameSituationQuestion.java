@@ -75,6 +75,13 @@ public class GameSituationQuestion extends Question {
         return 1;
     }
 
+    /**
+     * Prints the solution to the given widgets
+     *
+     * @param position of which position should the answer be printed
+     * @param textView all correct answers will be printed here
+     * @param imageView indicate whether the chosen answer is correct
+     */
     public void printSolution(int position, TextView textView, ImageView imageView) {
         List<String> solutions;
         switch (position) {
