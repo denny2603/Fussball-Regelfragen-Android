@@ -59,6 +59,18 @@ public class GameSituationQuestion extends Question {
         }
     }
 
+    public String getChosenRestartMethod() {
+        return chosenRestartMethod;
+    }
+
+    public String getChosenPositionOfRestart() {
+        return chosenPositionOfRestart;
+    }
+
+    public String getChosenDisciplinarySanction() {
+        return chosenDisciplinarySanction;
+    }
+
     @Override
     public double getFaults() {
         boolean correctRestartMethod = restartMethod.contains(chosenRestartMethod);
