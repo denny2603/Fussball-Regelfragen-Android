@@ -1,11 +1,15 @@
 package de.simontenbeitel.regelfragen.objects;
 
+import java.io.Serializable;
+
 /**
  * Root class for all kinds of questions
  *
  * @author Simon Tenbeitel
  */
-public abstract class Question {
+public abstract class Question  implements Serializable {
+
+    private static final long serialVersionUID = -6718157748174058765L;
 
     public String text;
     private long id; //id in local db

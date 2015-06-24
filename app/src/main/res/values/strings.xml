@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name" translatable="false">Fussball Regelfragen</string>
@@ -9,6 +10,18 @@
     <string name="title_singleQuestion">Single Question</string>
     <string name="title_exam">Exam</string>
     <string name="title_settings">Settings</string>
+
+    <!-- questions -->
+    <string name="restartMethod">Restart method</string>
+    <string name="positionOfRestart">Position of restart</string>
+    <string name="disciplinarySanction">Disciplinary sanction</string>
+    <string name="solution">Solution</string>
+    <string name="faults">Faults</string>
+    <string name="nextButton">Next</string>
+    <string name="backButton">Back</string>
+    <string name="handInButton">Hand in</string>
+    <string name="solveButton">Solve</string>
+    <string name="newQuestion">New question</string>
     <string name="default_server">Default server</string>
 
 </resources>

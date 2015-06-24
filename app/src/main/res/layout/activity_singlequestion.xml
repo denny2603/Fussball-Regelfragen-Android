@@ -35,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/question_container"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/activity_vertical_margin" />
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="@string/solveButton"/>
 
         </RelativeLayout>
 
