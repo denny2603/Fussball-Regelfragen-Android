@@ -182,31 +182,31 @@ public class QuestionDatabase extends SQLiteOpenHelper {
         long serverID = db.insert(Tables.SERVER, null, defaultServer);
 
         // default answers (German)
-        final String[] antwortenSpielfortsetzung = new String[]{"weiterspielen", "Abstoß", "Anstoß", "Eckstoß", "Einwurf", "Freistoß (direkt)", "Freistoß (indirekt)", "Schiedsrichterball", "Strafstoß", "Wiederholung", "Halbzeit", "Spielende"};
-        final String[] antwortenOrtDerFortsetzung = new String[]{"weiterspielen", "Mittelpunkt", "Torraum", "Torraumlinie", "Strafraumlinie", "Eckstoßteilkreis", "Seitenlinie", "11m Punkt", "Höhe 11m Punkt", "Gleicher Ort", "(Tat-)Ort des Vergehens", "wo getroffen/sollte", "wo Ball bei Pfiff", "Spielende"};
-        final String[] antwortenPersoenlicheStrafe = new String[]{"keine persönliche Strafe", "Gelb", "Gelb/Rot", "Gelb und Gelb/Rot", "Rot", "Nur Meldung möglich", "1x Gelb / 1x Rot", "2x Gelb", "2x Rot", "Spielabbruch"};
-        ContentValues antwortmoeglichkeitSpielsituation = new ContentValues();
-        antwortmoeglichkeitSpielsituation.put(AnswerPossibilitiesGameSituationColumns.SERVER, serverID);
-        antwortmoeglichkeitSpielsituation.put(AnswerPossibilitiesGameSituationColumns.POSITION, 0);
-        for (int indexSpielfortsetzung = 0; indexSpielfortsetzung < antwortenSpielfortsetzung.length; indexSpielfortsetzung++) {
-            long antwortID = insertUniqueAnswer(db, serverID, antwortenSpielfortsetzung[indexSpielfortsetzung]);
-            antwortmoeglichkeitSpielsituation.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
-            antwortmoeglichkeitSpielsituation.put(AnswerPossibilitiesGameSituationColumns.ORDER, indexSpielfortsetzung);
-            db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, antwortmoeglichkeitSpielsituation);
+        final String[] answersRestartMethod = new String[]{"weiterspielen", "Abstoß", "Anstoß", "Eckstoß", "Einwurf", "Freistoß (direkt)", "Freistoß (indirekt)", "Schiedsrichterball", "Strafstoß", "Wiederholung", "Halbzeit", "Spielende"};
+        final String[] answersPositionOfRestart = new String[]{"weiterspielen", "Mittelpunkt", "Torraum", "Torraumlinie", "Strafraumlinie", "Eckstoßteilkreis", "Seitenlinie", "11m Punkt", "Höhe 11m Punkt", "Gleicher Ort", "(Tat-)Ort des Vergehens", "wo getroffen/sollte", "wo Ball bei Pfiff", "Spielende"};
+        final String[] answersDisciplinarySanction = new String[]{"keine persönliche Strafe", "Gelb", "Gelb/Rot", "Gelb und Gelb/Rot", "Rot", "Nur Meldung möglich", "1x Gelb / 1x Rot", "2x Gelb", "2x Rot", "Spielabbruch"};
+        ContentValues answerPossibilitiesGameSituaionQuestion = new ContentValues();
+        answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.SERVER, serverID);
+        answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.POSITION, GameSituationQuestion.SpinnerPositions.RESTART_METHOD);
+        for (int indexRestartMethod = 0; indexRestartMethod < answersRestartMethod.length; indexRestartMethod++) {
+            long antwortID = insertUniqueAnswer(db, serverID, answersRestartMethod[indexRestartMethod]);
+            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
+            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ORDER, indexRestartMethod);
+            db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, answerPossibilitiesGameSituaionQuestion);
         }
-        antwortmoeglichkeitSpielsituation.put(AnswerPossibilitiesGameSituationColumns.POSITION, 1);
-        for (int indexOrtDerFortsetzung = 0; indexOrtDerFortsetzung < antwortenOrtDerFortsetzung.length; indexOrtDerFortsetzung++) {
-            long antwortID = insertUniqueAnswer(db, serverID, antwortenOrtDerFortsetzung[indexOrtDerFortsetzung]);
-            antwortmoeglichkeitSpielsituation.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
-            antwortmoeglichkeitSpielsituation.put(AnswerPossibilitiesGameSituationColumns.ORDER, indexOrtDerFortsetzung);
-            db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, antwortmoeglichkeitSpielsituation);
+        answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.POSITION, GameSituationQuestion.SpinnerPositions.POSITION_OF_RESTART);
+        for (int indexOrtDerFortsetzung = 0; indexOrtDerFortsetzung < answersPositionOfRestart.length; indexOrtDerFortsetzung++) {
+            long antwortID = insertUniqueAnswer(db, serverID, answersPositionOfRestart[indexOrtDerFortsetzung]);
+            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
+            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ORDER, indexOrtDerFortsetzung);
+            db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, answerPossibilitiesGameSituaionQuestion);
         }
-        antwortmoeglichkeitSpielsituation.put(AnswerPossibilitiesGameSituationColumns.POSITION, 2);
-        for (int indexPersoenlicheStrafe = 0; indexPersoenlicheStrafe < antwortenPersoenlicheStrafe.length; indexPersoenlicheStrafe++) {
-            long antwortID = insertUniqueAnswer(db, serverID, antwortenPersoenlicheStrafe[indexPersoenlicheStrafe]);
-            antwortmoeglichkeitSpielsituation.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
-            antwortmoeglichkeitSpielsituation.put(AnswerPossibilitiesGameSituationColumns.ORDER, indexPersoenlicheStrafe);
-            db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, antwortmoeglichkeitSpielsituation);
+        answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.POSITION, GameSituationQuestion.SpinnerPositions.DISCIPLINARY_SANCTION);
+        for (int indexPersoenlicheStrafe = 0; indexPersoenlicheStrafe < answersDisciplinarySanction.length; indexPersoenlicheStrafe++) {
+            long antwortID = insertUniqueAnswer(db, serverID, answersDisciplinarySanction[indexPersoenlicheStrafe]);
+            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
+            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ORDER, indexPersoenlicheStrafe);
+            db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, answerPossibilitiesGameSituaionQuestion);
         }
         // Test values
         ContentValues frage1 = new ContentValues();
