@@ -25,5 +25,6 @@ dependencies {
     // Android support
     compile 'com.android.support:appcompat-v7:22.2.0'
 
+    compile 'com.jakewharton:butterknife:6.1.0' // Library for view injection (Apache License v2)
     compile 'com.pnikosis:materialish-progress:1.5' // A material style progress wheel compatible with Android 2.3 (Apache License v2)
 }
