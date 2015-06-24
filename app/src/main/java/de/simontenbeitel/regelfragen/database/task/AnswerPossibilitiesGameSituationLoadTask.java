@@ -29,7 +29,7 @@ public class AnswerPossibilitiesGameSituationLoadTask extends AsyncTask<Integer,
             QuestionDatabase.Tables.ANSWER + "." + QuestionDatabase.AnswerColumns.TEXT};
     private static final String selection = QuestionDatabase.Tables.ANSWERPOSSIBILITIES_GAMESITUATION + "." + QuestionDatabase.AnswerPossibilitiesGameSituationColumns.SERVER + "=?"
             + " AND " + QuestionDatabase.Tables.ANSWERPOSSIBILITIES_GAMESITUATION + "." + QuestionDatabase.AnswerPossibilitiesGameSituationColumns.POSITION + "=?";
-    private static final String orderBy = QuestionDatabase.AnswerPossibilitiesGameSituationColumns.ORDER + " ASC";
+    private static final String orderBy = QuestionDatabase.AnswerPossibilitiesGameSituationColumns.ASCENDING_ORDER + " ASC";
 
     public AnswerPossibilitiesGameSituationLoadTask(long questionID, GameSituationQuestionFragment fragment) {
         this.questionID = questionID;

@@ -67,7 +67,7 @@ public class QuestionDatabase extends SQLiteOpenHelper {
         String SERVER = "server";
         String ANSWER = "answer";
         String POSITION = "position"; // For which position is this answer? (RestartMethod, PositionOfRestart, DisciplinarySanction)
-        String ORDER = "order"; // Order within the spinner (the lower number is above the higher one)
+        String ASCENDING_ORDER = "asc_order"; // Order within the spinner (the lower number is above the higher one)
     }
 
     public interface ExamColumns {
@@ -148,7 +148,7 @@ public class QuestionDatabase extends SQLiteOpenHelper {
                         + AnswerPossibilitiesGameSituationColumns.SERVER + " INTEGER NOT NULL, "
                         + AnswerPossibilitiesGameSituationColumns.ANSWER + " INTEGER NOT NULL, "
                         + AnswerPossibilitiesGameSituationColumns.POSITION + " INTEGER NOT NULL, "
-                        + AnswerPossibilitiesGameSituationColumns.ORDER + " INTEGER, "
+                        + AnswerPossibilitiesGameSituationColumns.ASCENDING_ORDER + " INTEGER, "
                         + "FOREIGN KEY(" + AnswerPossibilitiesGameSituationColumns.SERVER + ") REFERENCES " + Tables.SERVER + "(" + BaseColumns._ID + "), "
                         + "FOREIGN KEY(" + AnswerPossibilitiesGameSituationColumns.ANSWER + ") REFERENCES " + Tables.ANSWER + "(" + BaseColumns._ID + "))"
         );
@@ -191,21 +191,21 @@ public class QuestionDatabase extends SQLiteOpenHelper {
         for (int indexRestartMethod = 0; indexRestartMethod < answersRestartMethod.length; indexRestartMethod++) {
             long antwortID = insertUniqueAnswer(db, serverID, answersRestartMethod[indexRestartMethod]);
             answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
-            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ORDER, indexRestartMethod);
+            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ASCENDING_ORDER, indexRestartMethod);
             db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, answerPossibilitiesGameSituaionQuestion);
         }
         answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.POSITION, GameSituationQuestion.SpinnerPositions.POSITION_OF_RESTART);
         for (int indexOrtDerFortsetzung = 0; indexOrtDerFortsetzung < answersPositionOfRestart.length; indexOrtDerFortsetzung++) {
             long antwortID = insertUniqueAnswer(db, serverID, answersPositionOfRestart[indexOrtDerFortsetzung]);
             answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
-            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ORDER, indexOrtDerFortsetzung);
+            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ASCENDING_ORDER, indexOrtDerFortsetzung);
             db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, answerPossibilitiesGameSituaionQuestion);
         }
         answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.POSITION, GameSituationQuestion.SpinnerPositions.DISCIPLINARY_SANCTION);
         for (int indexPersoenlicheStrafe = 0; indexPersoenlicheStrafe < answersDisciplinarySanction.length; indexPersoenlicheStrafe++) {
             long antwortID = insertUniqueAnswer(db, serverID, answersDisciplinarySanction[indexPersoenlicheStrafe]);
             answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
-            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ORDER, indexPersoenlicheStrafe);
+            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ASCENDING_ORDER, indexPersoenlicheStrafe);
             db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, answerPossibilitiesGameSituaionQuestion);
         }
         // Test values
