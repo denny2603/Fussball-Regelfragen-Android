@@ -47,7 +47,23 @@ public abstract class QuestionFragment extends Fragment {
         return fragment;
     }
 
+    public static QuestionFragment newAnsweredFragment(Question question) {
+        QuestionFragment fragment;
+        if (question instanceof GameSituationQuestion) {
+            fragment = new GameSituationAnsweredFragment();
+        } else if (question instanceof MultipleChoiceQuestion) {
+            fragment = new MultipleChoiceAnsweredFragment();
+        } else {
+            throw new InvalidParameterException("No Fragment for question: " + question);
+        }
+        Bundle args = new Bundle();
+        args.putSerializable(TAG_QUESTION_EXTRA, question);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     protected Question mQuestion;
+    protected boolean answered = false;
 
     static class ViewHolder {
         @InjectView(R.id.question_text) TextView question_text;
@@ -85,6 +101,10 @@ public abstract class QuestionFragment extends Fragment {
         myParent.removeView(answerContainer);
         myParent.removeView(answerView);
         myParent.addView(answerView, answerContainerIndex);
+    }
+
+    public Fragment getAnsweredFragment() {
+        return newAnsweredFragment(mQuestion);
     }
 
 }

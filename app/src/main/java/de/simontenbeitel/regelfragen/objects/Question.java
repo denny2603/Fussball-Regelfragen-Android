@@ -1,15 +1,24 @@
 package de.simontenbeitel.regelfragen.objects;
 
+import android.content.Context;
+import android.widget.TextView;
+
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+import de.simontenbeitel.regelfragen.R;
+import de.simontenbeitel.regelfragen.RegelfragenApplication;
 
 /**
  * Root class for all kinds of questions
  *
  * @author Simon Tenbeitel
  */
-public abstract class Question  implements Serializable {
+public abstract class Question implements Serializable {
 
-    private static final long serialVersionUID = -6718157748174058765L;
+    private static final long serialVersionUID = 8409085040398009802L;
+    private static final NumberFormat numberFormat = new DecimalFormat();//"##.#");
 
     public String text;
     private long id; //id in local db
@@ -29,5 +38,13 @@ public abstract class Question  implements Serializable {
      * @return 0 if everything is correct, 0.5 if only disciplinary sanction is wrong, 1 otherwise
      */
     public abstract double getFaults();
+
+    public void printFaults(TextView faultsTextView) {
+        double faults = getFaults();
+        Context context = RegelfragenApplication.getContext();
+        String faultsString = context.getString(R.string.faults);
+        faultsString += ": " + numberFormat.format(faults);
+        faultsTextView.setText(faultsString);
+    }
 
 }

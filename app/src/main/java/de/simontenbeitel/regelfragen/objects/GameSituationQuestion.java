@@ -74,7 +74,7 @@ public class GameSituationQuestion extends Question {
     @Override
     public double getFaults() {
         boolean correctRestartMethod = restartMethod.contains(chosenRestartMethod);
-        boolean correctPositionOfRestart = positionOfRestart.contains(chosenPositionOfRestart); //todo what happens when .contains(null)? I want true, otherwise check first if chosen answer is null (then the user prefers to answer a question without position of restart)
+        boolean correctPositionOfRestart = null == chosenPositionOfRestart || positionOfRestart.contains(chosenPositionOfRestart);
         boolean correctDisciplinarySanction = disciplinarySanction.contains(chosenDisciplinarySanction);
 
         if (correctRestartMethod && correctPositionOfRestart) {

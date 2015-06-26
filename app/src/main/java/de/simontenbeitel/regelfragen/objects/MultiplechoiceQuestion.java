@@ -7,6 +7,7 @@ public class MultipleChoiceQuestion extends Question {
 
     public String[] answerPossibilities;
     private int solutionIndex;
+
     private int chosenAnswerIndex;
 
     public MultipleChoiceQuestion(String text, long id, String[] answerPossibilities, int solutionIndex) {
@@ -26,6 +27,10 @@ public class MultipleChoiceQuestion extends Question {
             return false;
         chosenAnswerIndex = index;
         return true;
+    }
+
+    public int getChosenAnswerIndex() {
+        return chosenAnswerIndex;
     }
 
     @Override

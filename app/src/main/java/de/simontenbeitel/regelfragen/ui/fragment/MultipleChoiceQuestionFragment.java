@@ -46,6 +46,7 @@ public class MultipleChoiceQuestionFragment extends QuestionFragment implements 
             radioGroup.addView(buttons[i]);
         }
         radioGroup.setOnCheckedChangeListener(this);
+        radioGroup.check(question.getChosenAnswerIndex() + 1);
     }
 
     @Override
