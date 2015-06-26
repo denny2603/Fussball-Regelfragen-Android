@@ -21,7 +21,7 @@
     <string name="backButton">Back</string>
     <string name="handInButton">Hand in</string>
     <string name="solveButton">Solve</string>
-    <string name="newQuestion">New question</string>
+    <string name="newQuestionButton">New question</string>
     <string name="default_server">Default server</string>
 
 </resources>

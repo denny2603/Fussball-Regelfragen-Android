@@ -2,6 +2,7 @@ package de.simontenbeitel.regelfragen.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import butterknife.ButterKnife;
+import butterknife.InjectView;
 import butterknife.OnClick;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
@@ -31,6 +33,8 @@ public class SingleQuestionActivity extends NavigationDrawerActivity {
     private boolean answeredMode = false;
     private List<Question> mQuestions;
     private Set<Long> mAnsweredQuestions;
+
+    @InjectView(R.id.question_navigation_button) Button navigationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,7 @@ public class SingleQuestionActivity extends NavigationDrawerActivity {
 
     private void replaceQuestionFragment(final QuestionFragment fragment) {
         mFragmentManager.beginTransaction().replace(R.id.question_container, fragment, TAG_QUESTION_FRAGMENT).commit();
+        setButtonText();
     }
 
     @OnClick(R.id.question_navigation_button)
@@ -78,12 +83,17 @@ public class SingleQuestionActivity extends NavigationDrawerActivity {
         }
     }
 
+    private void setButtonText() {
+        navigationButton.setText(answeredMode ? R.string.newQuestionButton : R.string.solveButton);
+    }
+
     private void showNextQuestion() {
         if (mQuestions.isEmpty()) {
             // no new questions
         } else {
             final Question question = mQuestions.get(0);
             final QuestionFragment fragment = QuestionFragment.newInstance(question);
+            answeredMode = false;
             replaceQuestionFragment(fragment);
         }
     }

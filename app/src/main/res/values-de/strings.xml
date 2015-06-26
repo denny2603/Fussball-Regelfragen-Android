@@ -16,7 +16,7 @@
     <string name="backButton">Zurück</string>
     <string name="handInButton">Abgabe</string>
     <string name="solveButton">Auflösung</string>
-    <string name="newQuestion">Neue Frage</string>
+    <string name="newQuestionButton">Neue Frage</string>
     <string name="default_server">Standard Server</string>
 
 </resources>
