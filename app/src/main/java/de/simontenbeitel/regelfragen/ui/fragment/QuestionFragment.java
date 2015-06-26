@@ -8,9 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.security.InvalidParameterException;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.simontenbeitel.regelfragen.R;
+import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
+import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
 import de.simontenbeitel.regelfragen.objects.Question;
 
 /**
@@ -21,6 +25,27 @@ import de.simontenbeitel.regelfragen.objects.Question;
 public abstract class QuestionFragment extends Fragment {
 
     public static final String TAG_QUESTION_EXTRA = "question";
+
+    /**
+     * Generates an instance of QuestionFragment depending on the type of question provided
+     *
+     * @param question The question to display
+     * @return An instance of QuestionFragment
+     */
+    public static QuestionFragment newInstance(Question question) {
+        QuestionFragment fragment;
+        if (question instanceof GameSituationQuestion) {
+            fragment = new GameSituationQuestionFragment();
+        } else if (question instanceof MultipleChoiceQuestion) {
+            fragment = new MultipleChoiceQuestionFragment();
+        } else {
+            throw new InvalidParameterException("No Fragment for question: " + question);
+        }
+        Bundle args = new Bundle();
+        args.putSerializable(TAG_QUESTION_EXTRA, question);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     protected Question mQuestion;
 

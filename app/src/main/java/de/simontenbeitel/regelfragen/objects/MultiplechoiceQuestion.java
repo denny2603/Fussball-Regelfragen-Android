@@ -3,13 +3,13 @@ package de.simontenbeitel.regelfragen.objects;
 /**
  * @author Simon Tenbeitel
  */
-public class MultiplechoiceQuestion extends Question {
+public class MultipleChoiceQuestion extends Question {
 
     public String[] answerPossibilities;
     private int solutionIndex;
     private int chosenAnswerIndex;
 
-    public MultiplechoiceQuestion(String text, long id, String[] answerPossibilities, int solutionIndex) {
+    public MultipleChoiceQuestion(String text, long id, String[] answerPossibilities, int solutionIndex) {
         super(text, id);
         this.answerPossibilities = answerPossibilities;
         this.solutionIndex = solutionIndex;
