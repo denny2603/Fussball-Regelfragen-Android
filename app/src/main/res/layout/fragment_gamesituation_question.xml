@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner_positionOfRestart"
         android:layout_marginTop="10dp"
-        android:text="@string/positionOfRestart" />
+        android:text="@string/disciplinarySanction" />
 
     <Spinner
         android:id="@+id/spinner_disciplinarySanction"
