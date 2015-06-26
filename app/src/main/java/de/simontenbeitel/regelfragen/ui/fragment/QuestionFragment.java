@@ -63,7 +63,6 @@ public abstract class QuestionFragment extends Fragment {
     }
 
     protected Question mQuestion;
-    protected boolean answered = false;
 
     static class ViewHolder {
         @InjectView(R.id.question_text) TextView question_text;
@@ -101,10 +100,6 @@ public abstract class QuestionFragment extends Fragment {
         myParent.removeView(answerContainer);
         myParent.removeView(answerView);
         myParent.addView(answerView, answerContainerIndex);
-    }
-
-    public Fragment getAnsweredFragment() {
-        return newAnsweredFragment(mQuestion);
     }
 
 }
