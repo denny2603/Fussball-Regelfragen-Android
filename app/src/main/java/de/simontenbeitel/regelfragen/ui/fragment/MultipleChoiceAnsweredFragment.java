@@ -13,12 +13,11 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
-import de.simontenbeitel.regelfragen.ui.adapter.MultipleChoiceAnsweredAdapter;
 
 /**
  * @author Simon Tenbeitel
  */
-public class MultipleChoiceAnsweredFragment extends QuestionFragment {
+public class MultipleChoiceAnsweredFragment extends AnsweredQuestionFragment {
 
     @InjectView(R.id.multipleChoiceAnswerContainer) LinearLayout answerContainer;
 

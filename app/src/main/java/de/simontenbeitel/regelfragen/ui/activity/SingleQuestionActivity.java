@@ -16,6 +16,7 @@ import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
 import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
 import de.simontenbeitel.regelfragen.objects.Question;
+import de.simontenbeitel.regelfragen.ui.fragment.AnsweredQuestionFragment;
 import de.simontenbeitel.regelfragen.ui.fragment.QuestionFragment;
 
 /**
@@ -73,7 +74,7 @@ public class SingleQuestionActivity extends NavigationDrawerActivity {
         if (!answeredMode) {
             answeredMode = true;
             final Question question = mQuestions.get(0);
-            final QuestionFragment fragment = QuestionFragment.newAnsweredFragment(question);
+            final QuestionFragment fragment = AnsweredQuestionFragment.newAnsweredFragment(question);
             replaceQuestionFragment(fragment);
             mAnsweredQuestions.add(question.getId());
             mQuestions.remove(0);

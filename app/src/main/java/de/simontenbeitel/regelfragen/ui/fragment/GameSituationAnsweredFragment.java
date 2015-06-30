@@ -16,7 +16,7 @@ import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
 /**
  * @author Simon Tenbeitel
  */
-public class GameSituationAnsweredFragment extends QuestionFragment {
+public class GameSituationAnsweredFragment extends AnsweredQuestionFragment {
 
     @InjectView(R.id.restartMethod_chosen) TextView restartMethod_chosen;
     @InjectView(R.id.restartMethod_solution) TextView restartMethod_solution;
