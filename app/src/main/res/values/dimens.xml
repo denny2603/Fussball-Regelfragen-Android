@@ -13,5 +13,6 @@
 
     <dimen name="vertical_margin">16dp</dimen>
     <dimen name="small_vertical_margin">8dp</dimen>
+    <dimen name="small_horizontal_margin">8dp</dimen>
 
 </resources>
