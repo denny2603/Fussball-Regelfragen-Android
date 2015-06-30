@@ -33,14 +33,16 @@
             android:id="@+id/restartMethod_chosen"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:textColor="@color/abc_primary_text_material_light" />
 
         <TextView
             android:id="@+id/restartMethod_solution"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="0.5"
-            android:scrollbars="none" />
+            android:scrollbars="none"
+            android:textColor="@color/abc_primary_text_material_light" />
 
         <ImageView
             android:id="@+id/restartMethod_correct"
@@ -77,14 +79,16 @@
             android:id="@+id/positionOfRestart_chosen"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:textColor="@color/abc_primary_text_material_light" />
 
         <TextView
             android:id="@+id/positionOfRestart_solution"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="0.5"
-            android:scrollbars="none" />
+            android:scrollbars="none"
+            android:textColor="@color/abc_primary_text_material_light" />
 
         <ImageView
             android:id="@+id/positionOfRestart_correct"
@@ -122,14 +126,16 @@
             android:id="@+id/disciplinarySanction_chosen"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.5"
+            android:textColor="@color/abc_primary_text_material_light" />
 
         <TextView
             android:id="@+id/disciplinarySanction_solution"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
             android:layout_weight="0.5"
-            android:scrollbars="none" />
+            android:scrollbars="none"
+            android:textColor="@color/abc_primary_text_material_light" />
 
         <ImageView
             android:id="@+id/disciplinarySanction_correct"
