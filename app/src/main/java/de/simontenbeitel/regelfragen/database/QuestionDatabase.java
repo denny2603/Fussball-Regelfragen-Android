@@ -96,6 +96,7 @@ public class QuestionDatabase extends SQLiteOpenHelper {
 
     public interface QuestionTypeValues {
         int GAMESITUATION = 1;
+        int MULTIPLECHOICE = 2;
     }
 
     public interface DifficultyValues {
