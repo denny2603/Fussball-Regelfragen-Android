@@ -23,5 +23,8 @@
     <string name="solveButton">Solve</string>
     <string name="newQuestionButton">New question</string>
     <string name="default_server">Default server</string>
+    <string name="noMoreQuestionsTitle">No more questions</string>
+    <string name="noMoreQuestionsMessage">You answered all questions. Please click \'OK\' and the questions will be shuffled again.</string>
 
+    <string name="OK">OK</string>
 </resources>

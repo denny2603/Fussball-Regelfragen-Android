@@ -12,7 +12,7 @@
     -->
 
     <ScrollView
-        android:id="@+id/frageScrollView"
+        android:id="@+id/questionScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -49,8 +49,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         app:matProg_barColor="@color/green700"
-        app:matProg_progressIndeterminate="true"
-        android:visibility="gone" />
+        app:matProg_progressIndeterminate="true" />
 
     <!--
          android:layout_gravity="start" tells DrawerLayout to treat

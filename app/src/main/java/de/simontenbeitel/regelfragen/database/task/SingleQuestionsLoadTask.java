@@ -16,8 +16,11 @@ import de.simontenbeitel.regelfragen.objects.Question;
  */
 public class SingleQuestionsLoadTask extends QuestionLoadTask {
 
-    public SingleQuestionsLoadTask(QuestionLoadTask.QuestionLoadCallback callback) {
+    private int numberOfQuestionsToLoadEachTime;
+
+    public SingleQuestionsLoadTask(QuestionLoadTask.QuestionLoadCallback callback, int numberOfQuestionsToLoadEachTime) {
         super(callback);
+        this.numberOfQuestionsToLoadEachTime = numberOfQuestionsToLoadEachTime;
     }
 
     @Override
@@ -25,14 +28,14 @@ public class SingleQuestionsLoadTask extends QuestionLoadTask {
         return getSingleQuestions(params);
     }
 
-    private List<Question> getSingleQuestions(Long... answeredQuestions) {
+    private List<Question> getSingleQuestions(Long... loadedQuestions) {
         String[] projection = new String[] {BaseColumns._ID, QuestionDatabase.QuestionColumns.TEXT, QuestionDatabase.QuestionColumns.TYPE};
-        String selection = BaseColumns._ID + " NOT IN (" + makePlaceholders(answeredQuestions.length) + ")";
-        Set<String> answeredQuestionsString = new HashSet<String>(answeredQuestions.length);
-        for(Long id : answeredQuestions)
+        String selection = BaseColumns._ID + " NOT IN (" + makePlaceholders(loadedQuestions.length) + ")";
+        Set<String> answeredQuestionsString = new HashSet<String>(loadedQuestions.length);
+        for(Long id : loadedQuestions)
             answeredQuestionsString.add(Long.toString(id));
         String[] selectionArgs = answeredQuestionsString.toArray(new String[answeredQuestionsString.size()]);
-        Cursor fragenCursor = db.query(QuestionDatabase.Tables.QUESTION, projection, selection, selectionArgs, null, null, "RANDOM() LIMIT 5");
+        Cursor fragenCursor = db.query(QuestionDatabase.Tables.QUESTION, projection, selection, selectionArgs, null, null, "RANDOM() LIMIT " + numberOfQuestionsToLoadEachTime);
         List<Question> questions = new ArrayList<>(5);
         if (fragenCursor.moveToFirst()) {
             do {

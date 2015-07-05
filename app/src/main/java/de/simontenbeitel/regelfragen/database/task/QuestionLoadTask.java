@@ -37,7 +37,7 @@ public abstract class QuestionLoadTask extends AsyncTask<Long, Void, List<Questi
     protected void onPostExecute(List<Question> questions) {
         super.onPostExecute(questions);
         db.close();
-        if (null != mCallback) mCallback.onFragenLoadFinished(questions);
+        if (null != mCallback) mCallback.onQuestionsLoadFinished(questions);
     }
 
     protected Question getQuestion(int type, String text, long id) {
@@ -109,7 +109,7 @@ public abstract class QuestionLoadTask extends AsyncTask<Long, Void, List<Questi
     }
 
     public interface QuestionLoadCallback {
-        void onFragenLoadFinished(List<Question> questions);
+        void onQuestionsLoadFinished(List<Question> questions);
     }
 
 }

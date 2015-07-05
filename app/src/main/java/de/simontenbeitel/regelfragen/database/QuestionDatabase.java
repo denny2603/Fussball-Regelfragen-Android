@@ -220,12 +220,30 @@ public class QuestionDatabase extends SQLiteOpenHelper {
         antwort1.put(AnswerQuestionColumns.ANSWER, 8);
         antwort1.put(AnswerQuestionColumns.POSITION, GameSituationQuestion.SpinnerPositions.RESTART_METHOD);
         db.insert(Tables.ANSWER_QUESTION, null, antwort1);
-        antwort1.put(AnswerQuestionColumns.ANSWER, 13);
+        antwort1.put(AnswerQuestionColumns.ANSWER, 24);
         antwort1.put(AnswerQuestionColumns.POSITION, GameSituationQuestion.SpinnerPositions.POSITION_OF_RESTART);
         db.insert(Tables.ANSWER_QUESTION, null, antwort1);
-        antwort1.put(AnswerQuestionColumns.ANSWER, 9);
+        antwort1.put(AnswerQuestionColumns.ANSWER, 33);
         antwort1.put(AnswerQuestionColumns.POSITION, GameSituationQuestion.SpinnerPositions.DISCIPLINARY_SANCTION);
         db.insert(Tables.ANSWER_QUESTION, null, antwort1);
+
+        ContentValues frage2 = new ContentValues();
+        frage2.put(QuestionColumns.SERVER, serverID);
+        frage2.put(QuestionColumns.TEXT,"Ein Spieler spielt den Ball auf der eigenen Torlinie absichtlich mit der Hand und verhindert so, dass der Ball ins Tor geht. Entscheidung?");
+        frage2.put(QuestionColumns.TYPE, QuestionTypeValues.MULTIPLECHOICE);
+        db.insert(Tables.QUESTION, null, frage2);
+        ContentValues antwort2 = new ContentValues();
+        antwort2.put(AnswerQuestionColumns.QUESTION, 2);
+        antwort2.put(AnswerQuestionColumns.CORRECT, BooleanValues.FALSE);
+        antwort2.put(AnswerQuestionColumns.ANSWER, insertUniqueAnswer(db, serverID, "weiterspielen"));
+        db.insert(Tables.ANSWER_QUESTION, null, antwort2);
+        antwort2.put(AnswerQuestionColumns.ANSWER, insertUniqueAnswer(db, serverID, "ind. Freistoß"));
+        db.insert(Tables.ANSWER_QUESTION, null, antwort2);
+        antwort2.put(AnswerQuestionColumns.ANSWER, insertUniqueAnswer(db, serverID, "dir. Freistoß"));
+        db.insert(Tables.ANSWER_QUESTION, null, antwort2);
+        antwort2.put(AnswerQuestionColumns.ANSWER, insertUniqueAnswer(db, serverID, "Strafstoß, Feldverweis"));
+        antwort2.put(AnswerQuestionColumns.CORRECT, BooleanValues.TRUE);
+        db.insert(Tables.ANSWER_QUESTION, null, antwort2);
     }
 
     @Override

@@ -18,5 +18,9 @@
     <string name="solveButton">Auflösung</string>
     <string name="newQuestionButton">Neue Frage</string>
     <string name="default_server">Standard Server</string>
+    <string name="noMoreQuestionsTitle">Keine Fragen mehr</string>
+    <string name="noMoreQuestionsMessage">Du hast alle Fragen beantwortet. Drücke \"OK\", um die Fragen neu zu mischen.</string>
+
+    <string name="OK">OK</string>
 
 </resources>
