@@ -140,7 +140,7 @@ public class QuestionDatabase extends SQLiteOpenHelper {
                         + AnswerQuestionColumns.QUESTION + " INTEGER NOT NULL, "
                         + AnswerQuestionColumns.ANSWER + " INTEGER NOT NULL, "
                         + AnswerQuestionColumns.POSITION + " INTEGER, "
-                        + AnswerQuestionColumns.CORRECT + " INTEGER DEFAULT " + BooleanValues.TRUE + ", "
+                        + AnswerQuestionColumns.CORRECT + " INTEGER,"
                         + "FOREIGN KEY(" + AnswerQuestionColumns.QUESTION + ") REFERENCES " + Tables.QUESTION + "(" + BaseColumns._ID + "), "
                         + "FOREIGN KEY(" + AnswerQuestionColumns.ANSWER + ") REFERENCES " + Tables.ANSWER + "(" + BaseColumns._ID + "))"
         );
