@@ -21,8 +21,6 @@ import butterknife.OnClick;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.database.task.QuestionLoadTask;
 import de.simontenbeitel.regelfragen.database.task.SingleQuestionsLoadTask;
-import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
-import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
 import de.simontenbeitel.regelfragen.objects.Question;
 import de.simontenbeitel.regelfragen.ui.fragment.AnsweredQuestionFragment;
 import de.simontenbeitel.regelfragen.ui.fragment.QuestionFragment;
@@ -58,22 +56,6 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
         mQuestions = new ArrayList<>(numberOfQuestionsToLoadEachTime + minBufferOfQuestions);
         mLoadedQuestions = new HashSet<>();
         loadNewQuestions();
-
-        /*
-        Test with hardcoded questions
-         */
-//        List<String> restartMethod = new ArrayList<>();
-//        restartMethod.add("Strafstoß");
-//        List<String> positionOfRestart = new ArrayList<>();
-//        positionOfRestart.add("11m Punkt");
-//        List<String> disciplinarySanction = new ArrayList<>();
-//        disciplinarySanction.add("Rot");
-//        Question questionG = new GameSituationQuestion("Ein Spieler spielt den Ball auf der eigenen Torlinie absichtlich mit der Hand und verhindert so, dass der Ball ins Tor geht. Entscheidung?", 1, restartMethod, positionOfRestart, disciplinarySanction);
-//        mQuestions.add(questionG);
-//        mQuestions.add(questionM);
-        /* END OF TEST */
-
-//        showNextQuestion(); //todo normally would call loadNewQuestions, and show it once it's loaded
     }
 
     private void replaceQuestionFragment(final QuestionFragment fragment) {
