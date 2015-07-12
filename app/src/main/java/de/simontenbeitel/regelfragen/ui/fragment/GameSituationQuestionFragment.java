@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import de.simontenbeitel.regelfragen.R;
-import de.simontenbeitel.regelfragen.database.QuestionDatabase;
+import de.simontenbeitel.regelfragen.database.RegelfragenDatabase;
 import de.simontenbeitel.regelfragen.database.task.AnswerPossibilitiesGameSituationLoadTask;
 import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
 
@@ -40,7 +40,7 @@ public class GameSituationQuestionFragment extends QuestionFragment implements A
     }
 
     public void fillSpinner(Cursor[] answerPossibilitiesCursors) {
-        final String[] projection = new String[]{QuestionDatabase.AnswerColumns.TEXT};
+        final String[] projection = new String[]{RegelfragenDatabase.AnswerColumns.TEXT};
         SimpleCursorAdapter[] adapters = new SimpleCursorAdapter[answerPossibilitiesCursors.length];
         for (int index = 0; index < answerPossibilitiesCursors.length; index++) {
             adapters[index] = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_spinner_item, answerPossibilitiesCursors[index], projection, new int[]{android.R.id.text1}, SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
@@ -72,7 +72,7 @@ public class GameSituationQuestionFragment extends QuestionFragment implements A
         Cursor cursor = adapter.getCursor();
         for (int position = 0; position < adapter.getCount(); position++) {
             cursor.moveToPosition(position);
-            String cursorValue = cursor.getString(cursor.getColumnIndex(QuestionDatabase.AnswerColumns.TEXT));
+            String cursorValue = cursor.getString(cursor.getColumnIndex(RegelfragenDatabase.AnswerColumns.TEXT));
             if (item.contentEquals(cursorValue)) {
                 cursorPosition = position;
                 break;
@@ -85,7 +85,7 @@ public class GameSituationQuestionFragment extends QuestionFragment implements A
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Cursor cursor = (Cursor) parent.getSelectedItem();
         GameSituationQuestion question = (GameSituationQuestion) mQuestion;
-        String answer = cursor.getString(cursor.getColumnIndex(QuestionDatabase.AnswerColumns.TEXT));
+        String answer = cursor.getString(cursor.getColumnIndex(RegelfragenDatabase.AnswerColumns.TEXT));
         if (restartMethod == parent) {
             question.answerQuestion(GameSituationQuestion.SpinnerPositions.RESTART_METHOD, answer);
         } else if (positionOfRestart == parent) {

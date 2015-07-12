@@ -16,14 +16,14 @@ import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
  *
  * @author Simon Tenbeitel
  */
-public class QuestionDatabase extends SQLiteOpenHelper {
+public class RegelfragenDatabase extends SQLiteOpenHelper {
 
     // All Static variables
 
     // Database Version
     private static final int DATABASE_VERSION = 1;
     // Database Name
-    private static final String DATABASE_NAME = "QuestionsDB";
+    private static final String DATABASE_NAME = "RegelfragenDB";
 
     // Table names
     public interface Tables {
@@ -109,7 +109,7 @@ public class QuestionDatabase extends SQLiteOpenHelper {
         int SCHIEDSRICHTER_ZEITUNG = 2;
     }
 
-    public QuestionDatabase(Context context) {
+    public RegelfragenDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

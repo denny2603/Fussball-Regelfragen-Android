@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import de.simontenbeitel.regelfragen.database.QuestionDatabase;
+import de.simontenbeitel.regelfragen.database.RegelfragenDatabase;
 import de.simontenbeitel.regelfragen.objects.Question;
 
 /**
@@ -29,19 +29,19 @@ public class SingleQuestionsLoadTask extends QuestionLoadTask {
     }
 
     private List<Question> getSingleQuestions(Long... loadedQuestions) {
-        String[] projection = new String[] {BaseColumns._ID, QuestionDatabase.QuestionColumns.TEXT, QuestionDatabase.QuestionColumns.TYPE};
+        String[] projection = new String[] {BaseColumns._ID, RegelfragenDatabase.QuestionColumns.TEXT, RegelfragenDatabase.QuestionColumns.TYPE};
         String selection = BaseColumns._ID + " NOT IN (" + makePlaceholders(loadedQuestions.length) + ")";
         Set<String> answeredQuestionsString = new HashSet<String>(loadedQuestions.length);
         for(Long id : loadedQuestions)
             answeredQuestionsString.add(Long.toString(id));
         String[] selectionArgs = answeredQuestionsString.toArray(new String[answeredQuestionsString.size()]);
-        Cursor fragenCursor = db.query(QuestionDatabase.Tables.QUESTION, projection, selection, selectionArgs, null, null, "RANDOM() LIMIT " + numberOfQuestionsToLoadEachTime);
+        Cursor fragenCursor = db.query(RegelfragenDatabase.Tables.QUESTION, projection, selection, selectionArgs, null, null, "RANDOM() LIMIT " + numberOfQuestionsToLoadEachTime);
         List<Question> questions = new ArrayList<>(5);
         if (fragenCursor.moveToFirst()) {
             do {
                 long id = fragenCursor.getLong(fragenCursor.getColumnIndex(BaseColumns._ID));
-                String text = fragenCursor.getString(fragenCursor.getColumnIndex(QuestionDatabase.QuestionColumns.TEXT));
-                int type = fragenCursor.getInt(fragenCursor.getColumnIndex(QuestionDatabase.QuestionColumns.TYPE));
+                String text = fragenCursor.getString(fragenCursor.getColumnIndex(RegelfragenDatabase.QuestionColumns.TEXT));
+                int type = fragenCursor.getInt(fragenCursor.getColumnIndex(RegelfragenDatabase.QuestionColumns.TYPE));
                 questions.add(getQuestion(type, text, id));
             } while (fragenCursor.moveToNext());
         }

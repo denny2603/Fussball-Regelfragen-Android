@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.simontenbeitel.regelfragen.RegelfragenApplication;
-import de.simontenbeitel.regelfragen.database.QuestionDatabase;
+import de.simontenbeitel.regelfragen.database.RegelfragenDatabase;
 import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
 import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
 import de.simontenbeitel.regelfragen.objects.Question;
@@ -30,7 +30,7 @@ public abstract class QuestionLoadTask extends AsyncTask<Long, Void, List<Questi
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        db = (new QuestionDatabase(RegelfragenApplication.getContext())).getReadableDatabase();
+        db = (new RegelfragenDatabase(RegelfragenApplication.getContext())).getReadableDatabase();
     }
 
     @Override
@@ -42,9 +42,9 @@ public abstract class QuestionLoadTask extends AsyncTask<Long, Void, List<Questi
 
     protected Question getQuestion(int type, String text, long id) {
         switch (type) {
-            case QuestionDatabase.QuestionTypeValues.GAMESITUATION:
+            case RegelfragenDatabase.QuestionTypeValues.GAMESITUATION:
                 return getGameSituationQuestionDetails(text, id);
-            case QuestionDatabase.QuestionTypeValues.MULTIPLECHOICE:
+            case RegelfragenDatabase.QuestionTypeValues.MULTIPLECHOICE:
                 return getMultipleChoiceQuestionDetails(text, id);
             default:
                 throw new InvalidParameterException("Cannot cast type of question " + type);
@@ -52,11 +52,11 @@ public abstract class QuestionLoadTask extends AsyncTask<Long, Void, List<Questi
     }
 
     private GameSituationQuestion getGameSituationQuestionDetails(String text, long id) {
-        String tables = QuestionDatabase.Tables.ANSWER_QUESTION + " JOIN " + QuestionDatabase.Tables.ANSWER
-                + " ON (" + QuestionDatabase.Tables.ANSWER_QUESTION + "." + QuestionDatabase.AnswerQuestionColumns.ANSWER + "=" + QuestionDatabase.Tables.ANSWER + "." + BaseColumns._ID + ")";
-        String[] columns = new String[]{QuestionDatabase.Tables.ANSWER_QUESTION + "." + QuestionDatabase.AnswerQuestionColumns.POSITION,
-                QuestionDatabase.Tables.ANSWER + "." + QuestionDatabase.AnswerColumns.TEXT};
-        String selection = QuestionDatabase.Tables.ANSWER_QUESTION + "." + QuestionDatabase.AnswerQuestionColumns.QUESTION + "=?";
+        String tables = RegelfragenDatabase.Tables.ANSWER_QUESTION + " JOIN " + RegelfragenDatabase.Tables.ANSWER
+                + " ON (" + RegelfragenDatabase.Tables.ANSWER_QUESTION + "." + RegelfragenDatabase.AnswerQuestionColumns.ANSWER + "=" + RegelfragenDatabase.Tables.ANSWER + "." + BaseColumns._ID + ")";
+        String[] columns = new String[]{RegelfragenDatabase.Tables.ANSWER_QUESTION + "." + RegelfragenDatabase.AnswerQuestionColumns.POSITION,
+                RegelfragenDatabase.Tables.ANSWER + "." + RegelfragenDatabase.AnswerColumns.TEXT};
+        String selection = RegelfragenDatabase.Tables.ANSWER_QUESTION + "." + RegelfragenDatabase.AnswerQuestionColumns.QUESTION + "=?";
         String[] selectionArgs = new String[]{Long.toString(id)};
         Cursor cursor = db.query(tables, columns, selection, selectionArgs, null, null, null);
         List<String> restartMethod = new ArrayList<String>();
@@ -64,8 +64,8 @@ public abstract class QuestionLoadTask extends AsyncTask<Long, Void, List<Questi
         List<String> disciplinarySanction = new ArrayList<String>();
         if (cursor.moveToFirst()) {
             do {
-                String answer = cursor.getString(cursor.getColumnIndex(QuestionDatabase.AnswerColumns.TEXT));
-                switch (cursor.getInt(cursor.getColumnIndex(QuestionDatabase.AnswerQuestionColumns.POSITION))) {
+                String answer = cursor.getString(cursor.getColumnIndex(RegelfragenDatabase.AnswerColumns.TEXT));
+                switch (cursor.getInt(cursor.getColumnIndex(RegelfragenDatabase.AnswerQuestionColumns.POSITION))) {
                     case GameSituationQuestion.SpinnerPositions.RESTART_METHOD:
                         restartMethod.add(answer);
                         break;
@@ -82,21 +82,21 @@ public abstract class QuestionLoadTask extends AsyncTask<Long, Void, List<Questi
     }
 
     private MultipleChoiceQuestion getMultipleChoiceQuestionDetails(String text, long id) {
-        String tables = QuestionDatabase.Tables.ANSWER_QUESTION + " JOIN " + QuestionDatabase.Tables.ANSWER
-                + " ON (" + QuestionDatabase.Tables.ANSWER_QUESTION + "." + QuestionDatabase.AnswerQuestionColumns.ANSWER + "=" + QuestionDatabase.Tables.ANSWER + "." + BaseColumns._ID + ")";
-        String[] columns = new String[]{QuestionDatabase.Tables.ANSWER + "." + QuestionDatabase.AnswerColumns.TEXT,
-                QuestionDatabase.Tables.ANSWER_QUESTION + "." + QuestionDatabase.AnswerQuestionColumns.CORRECT};
-        String selection = QuestionDatabase.Tables.ANSWER_QUESTION + "." + QuestionDatabase.AnswerQuestionColumns.QUESTION + "=?";
+        String tables = RegelfragenDatabase.Tables.ANSWER_QUESTION + " JOIN " + RegelfragenDatabase.Tables.ANSWER
+                + " ON (" + RegelfragenDatabase.Tables.ANSWER_QUESTION + "." + RegelfragenDatabase.AnswerQuestionColumns.ANSWER + "=" + RegelfragenDatabase.Tables.ANSWER + "." + BaseColumns._ID + ")";
+        String[] columns = new String[]{RegelfragenDatabase.Tables.ANSWER + "." + RegelfragenDatabase.AnswerColumns.TEXT,
+                RegelfragenDatabase.Tables.ANSWER_QUESTION + "." + RegelfragenDatabase.AnswerQuestionColumns.CORRECT};
+        String selection = RegelfragenDatabase.Tables.ANSWER_QUESTION + "." + RegelfragenDatabase.AnswerQuestionColumns.QUESTION + "=?";
         String[] selectionArgs = new String[]{Long.toString(id)};
-        String orderBy = QuestionDatabase.AnswerQuestionColumns.POSITION + " ASC";
+        String orderBy = RegelfragenDatabase.AnswerQuestionColumns.POSITION + " ASC";
         Cursor cursor = db.query(tables, columns, selection, selectionArgs, null, null, orderBy);
         String[] answerPossibilities = new String[cursor.getCount()];
         int solutionIndex = -1;
         if (cursor.moveToFirst()) {
             do {
-                String answer = cursor.getString(cursor.getColumnIndex(QuestionDatabase.AnswerColumns.TEXT));
+                String answer = cursor.getString(cursor.getColumnIndex(RegelfragenDatabase.AnswerColumns.TEXT));
                 answerPossibilities[cursor.getPosition()] = answer;
-                if (QuestionDatabase.BooleanValues.TRUE == cursor.getInt(cursor.getColumnIndex(QuestionDatabase.AnswerQuestionColumns.CORRECT))) {
+                if (RegelfragenDatabase.BooleanValues.TRUE == cursor.getInt(cursor.getColumnIndex(RegelfragenDatabase.AnswerQuestionColumns.CORRECT))) {
                     if (-1 != solutionIndex)
                         throw new RuntimeException("Found more than one correct answer for multiple choice question");
                     solutionIndex = cursor.getPosition();
