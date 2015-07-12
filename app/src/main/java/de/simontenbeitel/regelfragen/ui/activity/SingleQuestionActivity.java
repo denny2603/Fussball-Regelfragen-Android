@@ -52,6 +52,7 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singlequestion);
+        setUpNavigationDrawer();
         ButterKnife.inject(this);
         mFragmentManager = getSupportFragmentManager();
         mQuestions = new ArrayList<>(numberOfQuestionsToLoadEachTime + minBufferOfQuestions);

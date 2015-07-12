@@ -87,8 +87,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -97,11 +96,13 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(), android.R.layout.simple_list_item_1,
-                android.R.id.text1, new String[]{
-                getString(R.string.title_singleQuestion),
-                getString(R.string.title_exam),
-                getString(R.string.title_settings)}) {
+                getActionBar().getThemedContext(),
+                android.R.layout.simple_list_item_1,
+                android.R.id.text1,
+                new String[]{
+                    getString(R.string.title_singleQuestion),
+                    getString(R.string.title_exam),
+                    getString(R.string.title_settings)}) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
@@ -139,16 +140,11 @@ public class NavigationDrawerFragment extends Fragment {
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the navigation drawer and the action bar app icon.
-        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), /* host Activity */
+        mDrawerToggle = new ActionBarDrawerToggle(
+                getActivity(), /* host Activity */
                 mDrawerLayout, /* DrawerLayout object */
-                R.string.navigation_drawer_open, /*
-                                         * "open drawer" description for
-										 * accessibility
-										 */
-                R.string.navigation_drawer_close /*
-                                         * "close drawer" description for
-										 * accessibility
-										 */
+                R.string.navigation_drawer_open, /* "open drawer" description for accessibility */
+                R.string.navigation_drawer_close /* "close drawer" description for accessibility */
         ) {
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -157,8 +153,7 @@ public class NavigationDrawerFragment extends Fragment {
                     return;
                 }
 
-                getActivity().supportInvalidateOptionsMenu(); // calls
-                // onPrepareOptionsMenu()
+                getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
 
             @Override
@@ -174,11 +169,10 @@ public class NavigationDrawerFragment extends Fragment {
                     // the navigation drawer automatically in the future.
                     mUserLearnedDrawer = true;
                     SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                    sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).commit();
+                    sp.edit().putBoolean(PREF_USER_LEARNED_DRAWER, true).apply();
                 }
 
-                getActivity().supportInvalidateOptionsMenu(); // calls
-                // onPrepareOptionsMenu()
+                getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
         };
 
