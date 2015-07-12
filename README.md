@@ -26,3 +26,5 @@ License
 Butterknife - Copyright by Jake Wharton - Licensed under Apache License version 2.0
 
 Material-ish Progress - Copyright by Nico Hormazábal (https://github.com/pnikosis) - Licensed under Apache License version 2.0
+
+Retrofit - Copyright by Square Inc - Licensed under Apache License version 2.0
