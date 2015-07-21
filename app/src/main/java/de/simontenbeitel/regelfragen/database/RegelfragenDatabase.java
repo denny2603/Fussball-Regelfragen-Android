@@ -41,6 +41,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
     public interface ServerColumns {
         String URL = "url";
         String NAME = "name";
+        String LAST_UPDATED = "last_updated";
         String DELETION_FLAG = "flag";
     }
 
@@ -83,11 +84,6 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         String POSITION = "position";
     }
 
-    public interface DatenbaseVersionColumns {
-        String SERVER = "server";
-        String TIMESTAMP = "timestamp";
-    }
-
     // values
     public interface BooleanValues {
         int TRUE = 1;
@@ -119,6 +115,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
                         + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + ServerColumns.URL + " TEXT UNIQUE NOT NULL, "
                         + ServerColumns.NAME + " TEXT, "
+                        + ServerColumns.LAST_UPDATED + " DATETIME DEFAULT 0, "
                         + ServerColumns.DELETION_FLAG + " INTEGER DEFAULT " + BooleanValues.FALSE + ")"
         );
         db.execSQL("CREATE TABLE " + Tables.QUESTION + "("
@@ -168,12 +165,6 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
                         + QuestionInExamColumns.POSITION + " INTEGER NOT NULL, "
                         + "FOREIGN KEY(" + QuestionInExamColumns.QUESTION + ") REFERENCES " + Tables.QUESTION + "(" + BaseColumns._ID + "), "
                         + "FOREIGN KEY(" + QuestionInExamColumns.EXAM + ") REFERENCES " + Tables.EXAM + "(" + BaseColumns._ID + "))"
-        );
-        db.execSQL("CREATE TABLE " + Tables.DATABASE_VERSION + "("
-                        + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                        + DatenbaseVersionColumns.SERVER + " INTEGER NOT NULL, "
-                        + DatenbaseVersionColumns.TIMESTAMP + " DATETIME, "
-                        + "FOREIGN KEY(" + DatenbaseVersionColumns.SERVER + ") REFERENCES " + Tables.SERVER + "(" + BaseColumns._ID + "))"
         );
 
         // Insert default values
