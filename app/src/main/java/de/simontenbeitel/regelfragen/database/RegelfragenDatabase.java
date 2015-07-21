@@ -105,8 +105,16 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         int SCHIEDSRICHTER_ZEITUNG = 2;
     }
 
-    public RegelfragenDatabase(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    private static RegelfragenDatabase sInstance;
+
+    private RegelfragenDatabase() {
+        super(RegelfragenApplication.getContext(), DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static synchronized RegelfragenDatabase getInstance() {
+        if (null == sInstance)
+            sInstance = new RegelfragenDatabase();
+        return sInstance;
     }
 
     @Override
