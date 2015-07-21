@@ -181,69 +181,6 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         defaultServer.put(ServerColumns.URL, "http://www.simon-tenbeitel.de/regelfragenAPI");
         defaultServer.put(ServerColumns.NAME, RegelfragenApplication.getContext().getResources().getString(R.string.default_server));
         long serverID = db.insert(Tables.SERVER, null, defaultServer);
-
-        // default answers (German)
-        final String[] answersRestartMethod = new String[]{"weiterspielen", "Abstoß", "Anstoß", "Eckstoß", "Einwurf", "Freistoß (direkt)", "Freistoß (indirekt)", "Schiedsrichterball", "Strafstoß", "Wiederholung", "Halbzeit", "Spielende"};
-        final String[] answersPositionOfRestart = new String[]{"weiterspielen", "Mittelpunkt", "Torraum", "Torraumlinie", "Strafraumlinie", "Eckstoßteilkreis", "Seitenlinie", "11m Punkt", "Höhe 11m Punkt", "Gleicher Ort", "(Tat-)Ort des Vergehens", "wo getroffen/sollte", "wo Ball bei Pfiff", "Spielende"};
-        final String[] answersDisciplinarySanction = new String[]{"keine persönliche Strafe", "Gelb", "Gelb/Rot", "Gelb und Gelb/Rot", "Rot", "Nur Meldung möglich", "1x Gelb / 1x Rot", "2x Gelb", "2x Rot", "Spielabbruch"};
-        ContentValues answerPossibilitiesGameSituaionQuestion = new ContentValues();
-        answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.SERVER, serverID);
-        answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.POSITION, GameSituationQuestion.SpinnerPositions.RESTART_METHOD);
-        for (int indexRestartMethod = 0; indexRestartMethod < answersRestartMethod.length; indexRestartMethod++) {
-            long antwortID = insertUniqueAnswer(db, serverID, answersRestartMethod[indexRestartMethod]);
-            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
-            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ASCENDING_ORDER, indexRestartMethod);
-            db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, answerPossibilitiesGameSituaionQuestion);
-        }
-        answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.POSITION, GameSituationQuestion.SpinnerPositions.POSITION_OF_RESTART);
-        for (int indexOrtDerFortsetzung = 0; indexOrtDerFortsetzung < answersPositionOfRestart.length; indexOrtDerFortsetzung++) {
-            long antwortID = insertUniqueAnswer(db, serverID, answersPositionOfRestart[indexOrtDerFortsetzung]);
-            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
-            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ASCENDING_ORDER, indexOrtDerFortsetzung);
-            db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, answerPossibilitiesGameSituaionQuestion);
-        }
-        answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.POSITION, GameSituationQuestion.SpinnerPositions.DISCIPLINARY_SANCTION);
-        for (int indexPersoenlicheStrafe = 0; indexPersoenlicheStrafe < answersDisciplinarySanction.length; indexPersoenlicheStrafe++) {
-            long antwortID = insertUniqueAnswer(db, serverID, answersDisciplinarySanction[indexPersoenlicheStrafe]);
-            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ANSWER, antwortID);
-            answerPossibilitiesGameSituaionQuestion.put(AnswerPossibilitiesGameSituationColumns.ASCENDING_ORDER, indexPersoenlicheStrafe);
-            db.insert(Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, answerPossibilitiesGameSituaionQuestion);
-        }
-        // Test values
-        ContentValues frage1 = new ContentValues();
-        frage1.put(QuestionColumns.SERVER, serverID);
-        frage1.put(QuestionColumns.TEXT, "Ein Spieler befindet sich wegen einer Verletzung außerhalb des Spielfelds und beleidigt einen Gegner, der ihn kurz zuvor gefoult hatte. Deshalb verlässt dieser das Feld und stößt den verletzten Spieler heftig zu Boden. Wie ist zu entscheiden, wenn der in unmittelbarer Nähe befindliche SR beide Vorgänge wahrgenommen hat und deshalb das Spiel unterbricht?");
-        frage1.put(QuestionColumns.TYPE, QuestionTypeValues.GAMESITUATION);
-        db.insert(Tables.QUESTION, null, frage1);
-        ContentValues antwort1 = new ContentValues();
-        antwort1.put(AnswerQuestionColumns.QUESTION, 1);
-        antwort1.put(AnswerQuestionColumns.ANSWER, 8);
-        antwort1.put(AnswerQuestionColumns.POSITION, GameSituationQuestion.SpinnerPositions.RESTART_METHOD);
-        db.insert(Tables.ANSWER_QUESTION, null, antwort1);
-        antwort1.put(AnswerQuestionColumns.ANSWER, 24);
-        antwort1.put(AnswerQuestionColumns.POSITION, GameSituationQuestion.SpinnerPositions.POSITION_OF_RESTART);
-        db.insert(Tables.ANSWER_QUESTION, null, antwort1);
-        antwort1.put(AnswerQuestionColumns.ANSWER, 33);
-        antwort1.put(AnswerQuestionColumns.POSITION, GameSituationQuestion.SpinnerPositions.DISCIPLINARY_SANCTION);
-        db.insert(Tables.ANSWER_QUESTION, null, antwort1);
-
-        ContentValues frage2 = new ContentValues();
-        frage2.put(QuestionColumns.SERVER, serverID);
-        frage2.put(QuestionColumns.TEXT,"Ein Spieler spielt den Ball auf der eigenen Torlinie absichtlich mit der Hand und verhindert so, dass der Ball ins Tor geht. Entscheidung?");
-        frage2.put(QuestionColumns.TYPE, QuestionTypeValues.MULTIPLECHOICE);
-        db.insert(Tables.QUESTION, null, frage2);
-        ContentValues antwort2 = new ContentValues();
-        antwort2.put(AnswerQuestionColumns.QUESTION, 2);
-        antwort2.put(AnswerQuestionColumns.CORRECT, BooleanValues.FALSE);
-        antwort2.put(AnswerQuestionColumns.ANSWER, insertUniqueAnswer(db, serverID, "weiterspielen"));
-        db.insert(Tables.ANSWER_QUESTION, null, antwort2);
-        antwort2.put(AnswerQuestionColumns.ANSWER, insertUniqueAnswer(db, serverID, "ind. Freistoß"));
-        db.insert(Tables.ANSWER_QUESTION, null, antwort2);
-        antwort2.put(AnswerQuestionColumns.ANSWER, insertUniqueAnswer(db, serverID, "dir. Freistoß"));
-        db.insert(Tables.ANSWER_QUESTION, null, antwort2);
-        antwort2.put(AnswerQuestionColumns.ANSWER, insertUniqueAnswer(db, serverID, "Strafstoß, Feldverweis"));
-        antwort2.put(AnswerQuestionColumns.CORRECT, BooleanValues.TRUE);
-        db.insert(Tables.ANSWER_QUESTION, null, antwort2);
     }
 
     @Override
