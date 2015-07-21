@@ -172,7 +172,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Tables.DATABASE_VERSION + "("
                         + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + DatenbaseVersionColumns.SERVER + " INTEGER NOT NULL, "
-                        + DatenbaseVersionColumns.TIMESTAMP + " INTEGER, "
+                        + DatenbaseVersionColumns.TIMESTAMP + " DATETIME, "
                         + "FOREIGN KEY(" + DatenbaseVersionColumns.SERVER + ") REFERENCES " + Tables.SERVER + "(" + BaseColumns._ID + "))"
         );
 
