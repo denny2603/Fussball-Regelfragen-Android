@@ -20,6 +20,9 @@
             </intent-filter>
         </activity>
 
+        <service
+            android:name=".network.QuestionLoadService"
+            android:exported="false" />
     </application>
 
 </manifest>
