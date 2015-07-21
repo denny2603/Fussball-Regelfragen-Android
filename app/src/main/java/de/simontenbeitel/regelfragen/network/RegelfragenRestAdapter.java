@@ -14,20 +14,14 @@ public class RegelfragenRestAdapter {
     private static RestAdapter sRestAdapter;
     private static RegelfragenApi sApi;
 
-    public static synchronized RegelfragenApi getApi() {
-        if (null == sApi) {
-            initialize();
-        }
-        return sApi;
-    }
-
-    private static void initialize() {
+    public static RegelfragenApi getApi(String url) {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
         sRestAdapter = new RestAdapter.Builder()
-                .setEndpoint(RegelfragenApi.URL)
+                .setEndpoint(url)
                 .setConverter(new GsonConverter(gson))
                 .build();
         sApi = sRestAdapter.create(RegelfragenApi.class);
+        return sApi;
     }
 
 }
