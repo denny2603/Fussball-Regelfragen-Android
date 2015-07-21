@@ -177,7 +177,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
 
         // Insert default values
         ContentValues defaultServer = new ContentValues();
-        defaultServer.put(ServerColumns.URL, "http://www.simon-tenbeitel.de/regelfragenAPI");
+        defaultServer.put(ServerColumns.URL, "http://regelfragen.simon-tenbeitel.de/api");
         defaultServer.put(ServerColumns.NAME, RegelfragenApplication.getContext().getResources().getString(R.string.default_server));
         long serverID = db.insert(Tables.SERVER, null, defaultServer);
     }
