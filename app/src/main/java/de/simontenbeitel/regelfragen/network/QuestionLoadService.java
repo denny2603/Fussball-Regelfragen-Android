@@ -1,11 +1,17 @@
 package de.simontenbeitel.regelfragen.network;
 
 import android.app.IntentService;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
 import android.util.Log;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Locale;
 
 import de.simontenbeitel.regelfragen.database.RegelfragenDatabase;
 
@@ -13,6 +19,9 @@ import de.simontenbeitel.regelfragen.database.RegelfragenDatabase;
  * @author Simon Tenbeitel
  */
 public class QuestionLoadService extends IntentService {
+
+    private SQLiteDatabase db;
+    private long serverId;
 
     public QuestionLoadService() {
         super(QuestionLoadService.class.getName());
@@ -27,8 +36,8 @@ public class QuestionLoadService extends IntentService {
         RegelfragenApiJsonObjects.QuestionResponse response = api.getQuestions();
         Log.d(QuestionLoadService.class.getName(), "Downloaded questions in " + (System.currentTimeMillis() - start) + " millis");
 
-        SQLiteDatabase db = RegelfragenDatabase.getInstance().getWritableDatabase();
-        long serverId = getServerId(db, url);
+        db = RegelfragenDatabase.getInstance().getWritableDatabase();
+        serverId = getServerId(url);
         if (0 > serverId) {
             Log.e(QuestionLoadService.class.getName(), "Server URL is not in local db: " + url);
             return;
@@ -37,22 +46,38 @@ public class QuestionLoadService extends IntentService {
         Log.d(QuestionLoadService.class.getName(), "Start db transaction");
         db.beginTransaction();
         try {
-
+            insertLastUpdatedTimeStamp(response.timestamp);
+            insertQuestions(response.questions);
         } finally {
             db.endTransaction();
         }
     }
 
-    private long getServerId(SQLiteDatabase db, String url) {
-        Cursor cursor = db.query(RegelfragenDatabase.Tables.SERVER, new String[] {BaseColumns._ID}, RegelfragenDatabase.ServerColumns.URL + "=?", new String[] {url}, null, null, null);
+    private long getServerId(String url) {
+        Cursor cursor = db.query(RegelfragenDatabase.Tables.SERVER, new String[]{BaseColumns._ID}, RegelfragenDatabase.ServerColumns.URL + "=?", new String[]{url}, null, null, null);
         if (cursor.moveToFirst()) {
             return cursor.getLong(cursor.getColumnIndex(BaseColumns._ID));
         }
         return -1;
     }
 
-    private void insertLastUpdatedTimeStamp() {
+    private void insertLastUpdatedTimeStamp(Timestamp timestamp) {
+        ContentValues serverValues = new ContentValues();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        serverValues.put(RegelfragenDatabase.ServerColumns.LAST_UPDATED, dateFormat.format(timestamp));
+        db.update(RegelfragenDatabase.Tables.SERVER,
+                serverValues,
+                BaseColumns._ID + "=?",
+                new String[] {Long.toString(serverId)});
+    }
 
+    private void insertQuestions(List<RegelfragenApiJsonObjects.Question> questions) {
+        ContentValues questionValues = new ContentValues();
+        questionValues.put(RegelfragenDatabase.QuestionColumns.SERVER, serverId);
+        for (RegelfragenApiJsonObjects.Question question : questions) {
+            questionValues.put(RegelfragenDatabase.QuestionColumns.TEXT, question.text);
+            questionValues.put(RegelfragenDatabase.QuestionColumns.TYPE, question.type);
+        }
     }
 
 }
