@@ -9,7 +9,7 @@ import java.util.List;
 public class RegelfragenApiJsonObjects {
 
     public static class Question {
-        public long _id;
+        public String guid;
         public String text;
         public int type;
         public Timestamp created_at;
@@ -17,14 +17,14 @@ public class RegelfragenApiJsonObjects {
     }
 
     public static class Answer {
-        public long _id;
+        public String guid;
         public String text;
         public Timestamp created_at;
         public Timestamp updated_at;
     }
 
     public static class AnswerQuestion {
-        public long _id;
+        public String guid;
         public long question;
         public long answer;
         public int position;
@@ -34,7 +34,7 @@ public class RegelfragenApiJsonObjects {
     }
 
     public static class AnswerpossibilitiesGamesituation {
-        public long _id;
+        public String guid;
         public long answer;
         public int position;
         public long ascending_order;
@@ -43,7 +43,7 @@ public class RegelfragenApiJsonObjects {
     }
 
     public static class Exam {
-        public long _id;
+        public String guid;
         public int difficulty;
         public String name;
         public long type;
@@ -52,7 +52,7 @@ public class RegelfragenApiJsonObjects {
     }
 
     public static class QuestionInExam {
-        public long _id;
+        public String guid;
         public long question;
         public long exam;
         public int position;
