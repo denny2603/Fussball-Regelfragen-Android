@@ -47,17 +47,20 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
 
     public interface QuestionColumns {
         String SERVER = "server";
+        String GUID = "guid";
         String TEXT = "text";
         String TYPE = "type";
     }
 
     public interface AnswerColumns {
         String SERVER = "server";
+        String GUID = "guid";
         String TEXT = "text";
     }
 
     public interface AnswerQuestionColumns {
         String SERVER = "server";
+        String GUID = "guid";
         String QUESTION = "question";
         String ANSWER = "answer";
         String POSITION = "position";
@@ -66,6 +69,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
 
     public interface AnswerPossibilitiesGameSituationColumns {
         String SERVER = "server";
+        String GUID = "guid";
         String ANSWER = "answer";
         String POSITION = "position"; // For which position is this answer? (RestartMethod, PositionOfRestart, DisciplinarySanction)
         String ASCENDING_ORDER = "asc_order"; // Order within the spinner (the lower number is above the higher one)
@@ -73,6 +77,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
 
     public interface ExamColumns {
         String SERVER = "server";
+        String GUID = "guid";
         String NAME = "name";
         String DIFFICULTY = "difficulty";
         String TYPE = "type";
@@ -80,6 +85,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
 
     public interface QuestionInExamColumns {
         String QUESTION = "question";
+        String GUID = "guid";
         String EXAM = "exam";
         String POSITION = "position";
     }
@@ -128,6 +134,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         );
         db.execSQL("CREATE TABLE " + Tables.QUESTION + "("
                         + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + QuestionColumns.GUID + " TEXT UNIQUE NOT NULL, "
                         + QuestionColumns.SERVER + " INTEGER NOT NULL, "
                         + QuestionColumns.TEXT + " TEXT, "
                         + QuestionColumns.TYPE + " INTEGER NOT NULL, "
@@ -135,6 +142,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         );
         db.execSQL("CREATE TABLE " + Tables.ANSWER + "("
                         + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + AnswerColumns.GUID + " TEXT UNIQUE NOT NULL, "
                         + AnswerColumns.SERVER + " INTEGER NOT NULL, "
                         + AnswerColumns.TEXT + " TEXT NOT NULL, "
                         + "FOREIGN KEY(" + AnswerColumns.SERVER + ") REFERENCES " + Tables.SERVER + "(" + BaseColumns._ID + "))"
@@ -142,6 +150,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Tables.ANSWER_QUESTION + "("
                         + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 //                + AnswerQuestionColumns.SERVER + " INTEGER NOT NULL, FOREIGN KEY(" + BeantwortetColumns.SERVER + ") REFERENCES " + Tables.SERVER + "(" + BaseColumns._ID + "), "
+                        + AnswerQuestionColumns.GUID + " TEXT UNIQUE NOT NULL, "
                         + AnswerQuestionColumns.QUESTION + " INTEGER NOT NULL, "
                         + AnswerQuestionColumns.ANSWER + " INTEGER NOT NULL, "
                         + AnswerQuestionColumns.POSITION + " INTEGER, "
@@ -152,6 +161,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Tables.ANSWERPOSSIBILITIES_GAMESITUATION + "("
                         + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + AnswerPossibilitiesGameSituationColumns.SERVER + " INTEGER NOT NULL, "
+                        + AnswerPossibilitiesGameSituationColumns.GUID + " TEXT UNIQUE NOT NULL, "
                         + AnswerPossibilitiesGameSituationColumns.ANSWER + " INTEGER NOT NULL, "
                         + AnswerPossibilitiesGameSituationColumns.POSITION + " INTEGER NOT NULL, "
                         + AnswerPossibilitiesGameSituationColumns.ASCENDING_ORDER + " INTEGER, "
@@ -161,6 +171,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + Tables.EXAM + "("
                         + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                         + ExamColumns.SERVER + " INTEGER NOT NULL, "
+                        + ExamColumns.GUID + " TEXT UNIQUE NOT NULL, "
                         + ExamColumns.NAME + " TEXT NOT NULL, "
                         + ExamColumns.DIFFICULTY + " INTEGER NOT NULL, "
                         + ExamColumns.TYPE + " INTEGER NOT NULL DEFAULT " + ExamTypeValues.NORMAL + ", "
@@ -168,6 +179,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         );
         db.execSQL("CREATE TABLE " + Tables.QUESTION_IN_EXAM + "("
                         + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + QuestionInExamColumns.GUID + " TEXT UNIQUE NOT NULL, "
                         + QuestionInExamColumns.QUESTION + " INTEGER NOT NULL, "
                         + QuestionInExamColumns.EXAM + " INTEGER NOT NULL, "
                         + QuestionInExamColumns.POSITION + " INTEGER NOT NULL, "
