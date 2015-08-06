@@ -59,7 +59,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
     }
 
     public interface AnswerQuestionColumns {
-        String SERVER = "server";
+//        String SERVER = "server";
         String GUID = "guid";
         String QUESTION = "question";
         String ANSWER = "answer";

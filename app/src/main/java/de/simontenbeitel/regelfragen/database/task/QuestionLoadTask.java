@@ -30,7 +30,7 @@ public abstract class QuestionLoadTask extends AsyncTask<Long, Void, List<Questi
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        db = (new RegelfragenDatabase(RegelfragenApplication.getContext())).getReadableDatabase();
+        db = RegelfragenDatabase.getInstance().getReadableDatabase();
     }
 
     @Override

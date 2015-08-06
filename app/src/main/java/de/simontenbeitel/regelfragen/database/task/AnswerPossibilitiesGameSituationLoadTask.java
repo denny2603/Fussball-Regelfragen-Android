@@ -40,7 +40,7 @@ public class AnswerPossibilitiesGameSituationLoadTask extends AsyncTask<Integer,
     protected Cursor[] doInBackground(Integer... categories) {
         if (null == categories || 0 == categories.length)
             throw new InvalidParameterException("Must provide at least one category");
-        db = new RegelfragenDatabase(fragment.getActivity()).getReadableDatabase();
+        db = RegelfragenDatabase.getInstance().getReadableDatabase();
         long serverId = getServerIdForQuestion();
         if (0 > serverId)
             throw new InvalidParameterException("Cannot find server for question " + questionID);

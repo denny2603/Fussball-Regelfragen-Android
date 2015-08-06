@@ -48,8 +48,16 @@ public class QuestionLoadService extends IntentService {
         try {
             insertLastUpdatedTimeStamp(response.timestamp);
             insertQuestions(response.questions);
+            insertAnswers(response.answers);
+            insertAnswerQuestions(response.answer_question);
+            insertAnswerPossibilitiesGamesituation(response.answerpossibilities_gamesituation);
+            insertExams(response.exams);
+            insertQuestionInExam(response.question_in_exam);
+            db.setTransactionSuccessful();
+            Log.d(QuestionLoadService.class.getName(), "Transaction successful");
         } finally {
             db.endTransaction();
+            Log.d(QuestionLoadService.class.getName(), "End db transaction");
         }
     }
 
@@ -68,15 +76,77 @@ public class QuestionLoadService extends IntentService {
         db.update(RegelfragenDatabase.Tables.SERVER,
                 serverValues,
                 BaseColumns._ID + "=?",
-                new String[] {Long.toString(serverId)});
+                new String[]{Long.toString(serverId)});
     }
+
 
     private void insertQuestions(List<RegelfragenApiJsonObjects.Question> questions) {
         ContentValues questionValues = new ContentValues();
         questionValues.put(RegelfragenDatabase.QuestionColumns.SERVER, serverId);
         for (RegelfragenApiJsonObjects.Question question : questions) {
+            questionValues.put(RegelfragenDatabase.QuestionColumns.GUID, question.guid);
             questionValues.put(RegelfragenDatabase.QuestionColumns.TEXT, question.text);
             questionValues.put(RegelfragenDatabase.QuestionColumns.TYPE, question.type);
+            db.insert(RegelfragenDatabase.Tables.QUESTION, null, questionValues);
+        }
+    }
+
+
+    private void insertAnswers(List<RegelfragenApiJsonObjects.Answer> answers) {
+        ContentValues answerValues = new ContentValues();
+        answerValues.put(RegelfragenDatabase.AnswerColumns.SERVER, serverId);
+        for (RegelfragenApiJsonObjects.Answer answer : answers){
+            answerValues.put(RegelfragenDatabase.AnswerColumns.GUID, answer.guid);
+            answerValues.put(RegelfragenDatabase.AnswerColumns.TEXT, answer.text);
+            db.insert(RegelfragenDatabase.Tables.ANSWER, null, answerValues);
+        }
+    }
+
+    private void insertAnswerQuestions(List<RegelfragenApiJsonObjects.AnswerQuestion> answer_questions) {
+        ContentValues answerQuestionValues = new ContentValues();
+//        answerQuestionValues.put(RegelfragenDatabase.AnswerQuestionColumns.SERVER, serverId);
+        for (RegelfragenApiJsonObjects.AnswerQuestion answer_question : answer_questions) {
+            answerQuestionValues.put(RegelfragenDatabase.AnswerQuestionColumns.GUID, answer_question.guid);
+            answerQuestionValues.put(RegelfragenDatabase.AnswerQuestionColumns.QUESTION, answer_question.question);
+            answerQuestionValues.put(RegelfragenDatabase.AnswerQuestionColumns.ANSWER, answer_question.answer);
+            answerQuestionValues.put(RegelfragenDatabase.AnswerQuestionColumns.POSITION, answer_question.position);
+            answerQuestionValues.put(RegelfragenDatabase.AnswerQuestionColumns.CORRECT, answer_question.correct);
+            db.insert(RegelfragenDatabase.Tables.ANSWER_QUESTION, null, answerQuestionValues);
+        }
+    }
+
+    private void insertAnswerPossibilitiesGamesituation(List<RegelfragenApiJsonObjects.AnswerpossibilitiesGamesituation> answerpossibilities_gamesituation) {
+        ContentValues anserpossibilityValues = new ContentValues();
+        anserpossibilityValues.put(RegelfragenDatabase.AnswerPossibilitiesGameSituationColumns.SERVER, serverId);
+        for (RegelfragenApiJsonObjects.AnswerpossibilitiesGamesituation answerpossibility : answerpossibilities_gamesituation) {
+            anserpossibilityValues.put(RegelfragenDatabase.AnswerPossibilitiesGameSituationColumns.GUID, answerpossibility.guid);
+            anserpossibilityValues.put(RegelfragenDatabase.AnswerPossibilitiesGameSituationColumns.ANSWER, answerpossibility.answer);
+            anserpossibilityValues.put(RegelfragenDatabase.AnswerPossibilitiesGameSituationColumns.POSITION, answerpossibility.position);
+            anserpossibilityValues.put(RegelfragenDatabase.AnswerPossibilitiesGameSituationColumns.ASCENDING_ORDER, answerpossibility.ascending_order);
+            db.insert(RegelfragenDatabase.Tables.ANSWERPOSSIBILITIES_GAMESITUATION, null, anserpossibilityValues);
+        }
+    }
+
+    private void insertExams(List<RegelfragenApiJsonObjects.Exam> exams) {
+        ContentValues examValues = new ContentValues();
+        examValues.put(RegelfragenDatabase.ExamColumns.SERVER, serverId);
+        for (RegelfragenApiJsonObjects.Exam exam : exams) {
+            examValues.put(RegelfragenDatabase.ExamColumns.GUID, exam.guid);
+            examValues.put(RegelfragenDatabase.ExamColumns.NAME, exam.name);
+            examValues.put(RegelfragenDatabase.ExamColumns.DIFFICULTY, exam.difficulty);
+            examValues.put(RegelfragenDatabase.ExamColumns.TYPE, exam.type);
+            db.insert(RegelfragenDatabase.Tables.EXAM, null, examValues);
+        }
+    }
+
+    private void insertQuestionInExam(List<RegelfragenApiJsonObjects.QuestionInExam> question_in_exam) {
+        ContentValues questionInExamValues = new ContentValues();
+        for (RegelfragenApiJsonObjects.QuestionInExam qie : question_in_exam) {
+            questionInExamValues.put(RegelfragenDatabase.QuestionInExamColumns.GUID, qie.guid);
+            questionInExamValues.put(RegelfragenDatabase.QuestionInExamColumns.QUESTION, qie.question);
+            questionInExamValues.put(RegelfragenDatabase.QuestionInExamColumns.EXAM, qie.exam);
+            questionInExamValues.put(RegelfragenDatabase.QuestionInExamColumns.POSITION, qie.position);
+            db.insert(RegelfragenDatabase.Tables.QUESTION_IN_EXAM, null, questionInExamValues);
         }
     }
 
