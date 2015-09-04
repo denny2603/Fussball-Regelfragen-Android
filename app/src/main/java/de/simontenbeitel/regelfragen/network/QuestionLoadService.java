@@ -5,7 +5,9 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.provider.BaseColumns;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import java.sql.Timestamp;
@@ -19,6 +21,9 @@ import de.simontenbeitel.regelfragen.database.RegelfragenDatabase;
  * @author Simon Tenbeitel
  */
 public class QuestionLoadService extends IntentService {
+
+    public static final String ACTION = "de.simontenbeitel.regelfragen.questionload.completed";
+    public static final String KEY_SUCCESSFUL = "successful";
 
     private SQLiteDatabase db;
     private long serverId;
@@ -44,6 +49,7 @@ public class QuestionLoadService extends IntentService {
         }
         start = System.currentTimeMillis();
         Log.d(QuestionLoadService.class.getName(), "Start db transaction");
+        boolean successful = false;
         db.beginTransaction();
         try {
             insertLastUpdatedTimeStamp(response.timestamp);
@@ -54,10 +60,19 @@ public class QuestionLoadService extends IntentService {
             insertExams(response.exams);
             insertQuestionInExam(response.question_in_exam);
             db.setTransactionSuccessful();
+            successful = true;
             Log.d(QuestionLoadService.class.getName(), "Transaction successful");
         } finally {
             db.endTransaction();
             Log.d(QuestionLoadService.class.getName(), "End db transaction");
+
+            // Prepare intent to be sent via broadcast manager
+            Intent sendCompletedIntent = new Intent();
+            sendCompletedIntent.setAction(ACTION);
+            sendCompletedIntent.putExtra(KEY_SUCCESSFUL, successful);
+
+            LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
+            broadcastManager.sendBroadcast(sendCompletedIntent);
         }
     }
 

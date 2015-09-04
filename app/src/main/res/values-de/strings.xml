@@ -6,6 +6,16 @@
     <string name="title_exam">Prüfung</string>
     <string name="title_settings">Einstellungen</string>
 
+    <!-- startup -->
+    <string name="loadUnsuccessfulMessage">Es ist ein Fehler beim Laden der Fragen aufgetreten. Bitte versuche es später noch einmal.</string>
+    <string name="loadUnsuccessfulTitle">Nicht erfolgreich</string>
+    <string name="loadingProgressMessage">Bitte warten</string>
+    <string name="loadingProgressTitle">Lade Fragen </string>
+    <string name="noQuestionsDialogDownload">Download</string>
+    <string name="noQuestionsDialogExit">Beenden</string>
+    <string name="noQuestionsDialogMessage">Du hast bisher noch keine Fragen heruntergeladen. Diese App funktioniert ohne Fragen jedoch nicht. Möchtest du die Fragen jetzt herunterladen?</string>
+    <string name="noQuestionsDialogTitle">Noch keine Fragen</string>
+
     <!-- 	Fragen -->
     <string name="restartMethod">Spielfortsetzung</string>
     <string name="positionOfRestart">Ort der Fortsetzung</string>

@@ -11,6 +11,16 @@
     <string name="title_exam">Exam</string>
     <string name="title_settings">Settings</string>
 
+    <!-- startup -->
+    <string name="noQuestionsDialogTitle">No questions yet</string>
+    <string name="noQuestionsDialogMessage">You don\'t have any questions downloaded so far. The app won\'t work without questions. Do you want to download them now?</string>
+    <string name="noQuestionsDialogExit">Exit</string>
+    <string name="noQuestionsDialogDownload">Download</string>
+    <string name="loadingProgressTitle">Loading questions</string>
+    <string name="loadingProgressMessage">Please wait</string>
+    <string name="loadUnsuccessfulTitle">Unsuccessful</string>
+    <string name="loadUnsuccessfulMessage">An error occurred while loading questions. Please try again later.</string>
+
     <!-- questions -->
     <string name="restartMethod">Restart method</string>
     <string name="positionOfRestart">Position of restart</string>
