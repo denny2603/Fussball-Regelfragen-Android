@@ -22,10 +22,10 @@ License
 	frameworks at the bottom of this README.
 
 ## Frameworks used (ordered alphabetically):
-Butterknife - Copyright by Jake Wharton - Licensed under Apache License version 2.0
+Butterknife - Copyright by Jake Wharton (https://github.com/JakeWharton) - Licensed under Apache License version 2.0
 
-Material Dialogs - Copyright by Aidan Michael Follestad - Licensed under MIT License
+Material Dialogs - Copyright by Aidan Michael Follestad (https://github.com/afollestad) - Licensed under MIT License
 
 Material-ish Progress - Copyright by Nico Hormazábal (https://github.com/pnikosis) - Licensed under Apache License version 2.0
 
-Retrofit - Copyright by Square Inc - Licensed under Apache License version 2.0
+Retrofit - Copyright by Square Inc (https://github.com/square) - Licensed under Apache License version 2.0
