@@ -24,6 +24,8 @@ License
 ## Frameworks used (ordered alphabetically):
 Butterknife - Copyright by Jake Wharton - Licensed under Apache License version 2.0
 
+Material Dialogs - Copyright by Aidan Michael Follestad - Licensed under MIT License
+
 Material-ish Progress - Copyright by Nico Hormazábal (https://github.com/pnikosis) - Licensed under Apache License version 2.0
 
 Retrofit - Copyright by Square Inc - Licensed under Apache License version 2.0
