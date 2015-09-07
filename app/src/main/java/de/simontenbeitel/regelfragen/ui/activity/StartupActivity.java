@@ -76,7 +76,6 @@ public class StartupActivity extends AppCompatActivity {
     }
 
     private void startMainActivity() {
-        progressDialog.cancel();
         Intent i = new Intent(this, SingleQuestionActivity.class);
         startActivity(i);
         finish();
@@ -92,6 +91,7 @@ public class StartupActivity extends AppCompatActivity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            progressDialog.cancel();
             if (intent.getBooleanExtra(QuestionLoadService.KEY_SUCCESSFUL, false)) {
                 startMainActivity();
             } else {
