@@ -65,6 +65,7 @@ public class QuestionLoadService extends IntentService {
         } finally {
             db.endTransaction();
             Log.d(QuestionLoadService.class.getName(), "End db transaction");
+            Log.d(QuestionLoadService.class.getName(), "Completed db transaction in " + (System.currentTimeMillis() - start) + " millis");
 
             // Prepare intent to be sent via broadcast manager
             Intent sendCompletedIntent = new Intent();
