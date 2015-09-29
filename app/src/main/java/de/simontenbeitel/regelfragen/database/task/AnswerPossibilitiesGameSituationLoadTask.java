@@ -17,8 +17,8 @@ import de.simontenbeitel.regelfragen.ui.fragment.GameSituationQuestionFragment;
  */
 public class AnswerPossibilitiesGameSituationLoadTask extends AsyncTask<Integer, Void, Cursor[]> {
 
-    private long questionID;
-    private GameSituationQuestionFragment fragment;
+    private final long questionID;
+    private final GameSituationQuestionFragment fragment;
     private SQLiteDatabase db;
 
     private static final String tables = RegelfragenDatabase.Tables.ANSWERPOSSIBILITIES_GAMESITUATION

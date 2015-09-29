@@ -3,6 +3,8 @@ package de.simontenbeitel.regelfragen.network;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.HashMap;
+
 import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
 
@@ -11,17 +13,19 @@ import retrofit.converter.GsonConverter;
  */
 public class RegelfragenRestAdapter {
 
-    private static RestAdapter sRestAdapter;
-    private static RegelfragenApi sApi;
+    private static final HashMap<String, RegelfragenApi> sApis = new HashMap<>();
 
-    public static RegelfragenApi getApi(String url) {
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
-        sRestAdapter = new RestAdapter.Builder()
-                .setEndpoint(url)
-                .setConverter(new GsonConverter(gson))
-                .build();
-        sApi = sRestAdapter.create(RegelfragenApi.class);
-        return sApi;
+    public static synchronized RegelfragenApi getApi(String url) {
+        if (!sApis.containsKey(url)) {
+            Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+            RestAdapter restAdapter = new RestAdapter.Builder()
+                    .setEndpoint(url)
+                    .setConverter(new GsonConverter(gson))
+                    .build();
+            RegelfragenApi api = restAdapter.create(RegelfragenApi.class);
+            sApis.put(url, api);
+        }
+        return sApis.get(url);
     }
 
 }

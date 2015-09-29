@@ -9,7 +9,6 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.simontenbeitel.regelfragen.RegelfragenApplication;
 import de.simontenbeitel.regelfragen.database.RegelfragenDatabase;
 import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
 import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
@@ -21,7 +20,7 @@ import de.simontenbeitel.regelfragen.objects.Question;
 public abstract class QuestionLoadTask extends AsyncTask<Long, Void, List<Question>> {
 
     protected SQLiteDatabase db;
-    protected QuestionLoadCallback mCallback;
+    protected final QuestionLoadCallback mCallback;
 
     public QuestionLoadTask(QuestionLoadCallback callback) {
         mCallback = callback;

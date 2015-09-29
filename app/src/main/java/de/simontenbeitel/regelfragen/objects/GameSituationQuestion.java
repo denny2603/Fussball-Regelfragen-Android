@@ -20,9 +20,9 @@ public class GameSituationQuestion extends Question {
     }
 
     // sets of correct answers for each category
-    private List<String> restartMethod;
-    private List<String> positionOfRestart;
-    private List<String> disciplinarySanction;
+    private final List<String> restartMethod;
+    private final List<String> positionOfRestart;
+    private final List<String> disciplinarySanction;
 
     // answers given by the user
     private String chosenRestartMethod;

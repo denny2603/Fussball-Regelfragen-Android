@@ -20,8 +20,8 @@ public abstract class Question implements Serializable {
     private static final long serialVersionUID = 8409085040398009802L;
     private static final NumberFormat numberFormat = new DecimalFormat();//"##.#");
 
-    public String text;
-    private long id; //id in local db
+    public final String text;
+    private final long id; //id in local db
 
     public Question(String text, long id) {
         this.text = text;

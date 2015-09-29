@@ -1,31 +1,32 @@
 package de.simontenbeitel.regelfragen.ui.activity;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.BaseColumns;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import java.util.Set;
+
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.database.RegelfragenDatabase;
-import de.simontenbeitel.regelfragen.network.QuestionLoadService;
+import de.simontenbeitel.regelfragen.network.processor.Processor;
+import de.simontenbeitel.regelfragen.network.service.RegelfragenServiceHelper;
+import de.simontenbeitel.regelfragen.network.service.ServiceHelper;
 
 /**
  * Created by Simon on 06.08.2015.
  */
-public class StartupActivity extends AppCompatActivity {
+public class StartupActivity extends AppCompatActivity implements ServiceHelper.RequestListener {
 
-    private MaterialDialog progressDialog;
+    private MaterialDialog mProgressDialog;
+    private Set<Long> mQuestionLoadRequestIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class StartupActivity extends AppCompatActivity {
                     .setPositiveButton(R.string.noQuestionsDialogDownload, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            startQuestionLoadService();
+                            loadQuestions();
                         }
                     })
                     .setNegativeButton(R.string.noQuestionsDialogExit, new DialogInterface.OnClickListener() {
@@ -54,25 +55,26 @@ public class StartupActivity extends AppCompatActivity {
     }
 
     private boolean areQuestionsLoaded() {
-        SQLiteDatabase db = RegelfragenDatabase.getInstance().getReadableDatabase();
+        RegelfragenDatabase dbInstance = RegelfragenDatabase.getInstance();
+        SQLiteDatabase db = dbInstance.getReadableDatabase();
         Cursor cursor = db.query(RegelfragenDatabase.Tables.QUESTION, new String[]{BaseColumns._ID}, null, null, null, null, null, "1");
-        return cursor.moveToFirst();
+        boolean hasCursorEntries = cursor.moveToFirst();
+        cursor.close();
+        return hasCursorEntries;
     }
 
-    private void startQuestionLoadService() {
-        progressDialog = new MaterialDialog.Builder(this)
+    private void loadQuestions() {
+        mProgressDialog = new MaterialDialog.Builder(this)
                 .title(R.string.loadingProgressTitle)
                 .content(R.string.loadingProgressMessage)
                 .progress(true, 0)
                 .build();
-        progressDialog.show();
+        mProgressDialog.show();
 
-        LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
-        broadcastManager.registerReceiver(new QuestionLoadBroadcastReceiver(this), new IntentFilter(QuestionLoadService.ACTION));
-
-        Intent questionLoadServiceIntent = new Intent(this, QuestionLoadService.class);
-        questionLoadServiceIntent.setData(Uri.parse("http://regelfragen.simon-tenbeitel.de/api"));
-        startService(questionLoadServiceIntent);
+        RegelfragenServiceHelper serviceHelper = RegelfragenServiceHelper.getInstance();
+        serviceHelper.registerListener(this);
+        mQuestionLoadRequestIds = serviceHelper.loadQuestionsFromAllServers();
+        Log.d(StartupActivity.class.getName(), "Question load request ids: " + mQuestionLoadRequestIds.toString());
     }
 
     private void startMainActivity() {
@@ -81,21 +83,17 @@ public class StartupActivity extends AppCompatActivity {
         finish();
     }
 
-    class QuestionLoadBroadcastReceiver extends BroadcastReceiver{
-
-        private Context mContext;
-
-        public QuestionLoadBroadcastReceiver(Context mContext) {
-            this.mContext = mContext;
-        }
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            progressDialog.cancel();
-            if (intent.getBooleanExtra(QuestionLoadService.KEY_SUCCESSFUL, false)) {
+    @Override
+    public void onRequestFinished(long requestId, Bundle result) {
+        boolean successful = result.getBoolean(Processor.Extras.RESULT_SUCCESSFUL);
+        Log.d(StartupActivity.class.getName(), "Finished loading questions request with id " + requestId + " " + (successful ? "successfully" : "unsuccessfully"));
+        mQuestionLoadRequestIds.remove(requestId);
+        if (mQuestionLoadRequestIds.isEmpty()) {
+            mProgressDialog.cancel();
+            if (areQuestionsLoaded()) {
                 startMainActivity();
             } else {
-                AlertDialog dialog = new AlertDialog.Builder(mContext)
+                AlertDialog dialog = new AlertDialog.Builder(this)
                         .setTitle(R.string.loadUnsuccessfulTitle)
                         .setMessage(R.string.loadUnsuccessfulMessage)
                         .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
@@ -108,7 +106,6 @@ public class StartupActivity extends AppCompatActivity {
                 dialog.show();
             }
         }
-
     }
 
 }

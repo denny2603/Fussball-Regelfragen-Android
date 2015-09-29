@@ -16,7 +16,7 @@ import de.simontenbeitel.regelfragen.objects.Question;
  */
 public class SingleQuestionsLoadTask extends QuestionLoadTask {
 
-    private int numberOfQuestionsToLoadEachTime;
+    private final int numberOfQuestionsToLoadEachTime;
 
     public SingleQuestionsLoadTask(QuestionLoadTask.QuestionLoadCallback callback, int numberOfQuestionsToLoadEachTime) {
         super(callback);

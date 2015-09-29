@@ -5,8 +5,8 @@ package de.simontenbeitel.regelfragen.objects;
  */
 public class MultipleChoiceQuestion extends Question {
 
-    public String[] answerPossibilities;
-    private int solutionIndex;
+    public final String[] answerPossibilities;
+    private final int solutionIndex;
 
     private int chosenAnswerIndex;
 

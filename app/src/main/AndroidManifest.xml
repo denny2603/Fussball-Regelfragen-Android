@@ -25,9 +25,12 @@
             android:launchMode="singleTop">
         </activity>
 
-        <service
-            android:name=".network.QuestionLoadService"
-            android:exported="false" />
+        <service android:name=".network.service.RegelfragenService"
+            android:exported="false"/>
+        <provider
+            android:authorities="de.simontenbeitel.regelfragen.provider"
+            android:name=".database.RegelfragenContentProvider"
+            android:exported="false"/>
     </application>
 
 </manifest>

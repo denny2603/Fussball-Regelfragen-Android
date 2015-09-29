@@ -1,7 +1,6 @@
 package de.simontenbeitel.regelfragen.database;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -9,7 +8,6 @@ import android.provider.BaseColumns;
 
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.RegelfragenApplication;
-import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
 
 /**
  * Helper class for the database which contains the questions
@@ -42,6 +40,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         String URL = "url";
         String NAME = "name";
         String LAST_UPDATED = "last_updated";
+        String ACTIVE = "active";
         String DELETION_FLAG = "flag";
     }
 
@@ -130,6 +129,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
                         + ServerColumns.URL + " TEXT UNIQUE NOT NULL, "
                         + ServerColumns.NAME + " TEXT, "
                         + ServerColumns.LAST_UPDATED + " DATETIME DEFAULT 0, "
+                        + ServerColumns.ACTIVE + " INTEGER DEFAULT " + BooleanValues.TRUE + ","
                         + ServerColumns.DELETION_FLAG + " INTEGER DEFAULT " + BooleanValues.FALSE + ")"
         );
         db.execSQL("CREATE TABLE " + Tables.QUESTION + "("
@@ -199,14 +199,26 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
 
     }
 
-    private long insertUniqueAnswer(SQLiteDatabase db, long server, String antworttext) {
-        Cursor cursor = db.query(Tables.ANSWER, new String[]{BaseColumns._ID}, AnswerColumns.TEXT + "=? AND " + AnswerColumns.SERVER + "=?", new String[]{antworttext, Long.toString(server)}, null, null, null);
-        if (cursor.moveToFirst()) return cursor.getLong(cursor.getColumnIndex(BaseColumns._ID));
-        ContentValues antwortValues = new ContentValues();
-        antwortValues.put(AnswerColumns.SERVER, server);
-        antwortValues.put(AnswerColumns.TEXT, antworttext);
-        long rowID = db.insert(Tables.ANSWER, null, antwortValues);
-        return rowID;
+    /**
+     * Returns the BaseColumns._ID for the given server URL in the local db
+     *
+     * @param url The server url
+     * @return _id value, or -1L if no entry exists for given url
+     */
+    public static long getServerId(String url) {
+        final RegelfragenDatabase dbInstance = getInstance();
+        final SQLiteDatabase db = dbInstance.getWritableDatabase();
+        Cursor serverCursor = db.query(Tables.SERVER,
+                new String[]{BaseColumns._ID},
+                RegelfragenContract.Server.URL + "=?",
+                new String[]{url},
+                null, null, null);
+        if (serverCursor.moveToFirst()) {
+            long serverId = serverCursor.getLong(serverCursor.getColumnIndex(BaseColumns._ID));
+            serverCursor.close();
+            return serverId;
+        }
+        return -1;
     }
 
 }
