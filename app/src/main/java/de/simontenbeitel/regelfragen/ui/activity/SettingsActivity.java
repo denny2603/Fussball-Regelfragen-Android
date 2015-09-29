@@ -16,8 +16,9 @@ public class SettingsActivity extends NavigationDrawerActivity {
         setContentView(R.layout.activity_settings);
         setUpNavigationDrawer();
         getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new SettingsFragment())
+                .replace(R.id.content, new SettingsFragment())
                 .commit();
+        isCreated = true;
     }
 
 }
