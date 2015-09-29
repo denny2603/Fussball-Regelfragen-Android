@@ -37,4 +37,25 @@
     <string name="noMoreQuestionsMessage">You answered all questions. Please click \'OK\' and the questions will be shuffled again.</string>
 
     <string name="OK">OK</string>
+
+    <!-- Settings -->
+    <string name="pref_category_general">General</string>
+    <string name="pref_positionOfRestart">Position of restart</string>
+    <string name="pref_positionOfRestart_active">Test position of restart</string>
+    <string name="pref_positionOfRestart_not_active">Don\'t test position of restart</string>
+    <string name="pref_key_positionOfRestart_active" translatable="false">pref_key_positionOfRestart_active</string>
+    <string name="pref_statistics">Statistic</string>
+    <string name="pref_stats_active">Create statistics</string>
+    <string name="pref_stats_not_active">Don\'t create statistics</string>
+    <string name="pref_key_statistics_active" translatable="false">pref_key_statistics_active</string>
+    <string name="pref_category_difficulty">Difficulty</string>
+    <string name="pref_limit_difficulties">Limit difficulties</string>
+    <string name="pref_limit_difficulties_on">only selected levels</string>
+    <string name="pref_limit_difficulties_off">all levels</string>
+    <string name="pref_key_limit_difficulties" translatable="false">pref_key_limit_difficulties</string>
+    <string name="pref_limit_difficulties_aspirant">Aspirant</string>
+    <string name="pref_key_anwaerter_active" translatable="false">pref_key_anwaerter_active</string>
+    <string name="pref_limit_difficulties_normal">Normal</string>
+    <string name="pref_key_normal_active" translatable="false">pref_key_normal_active</string>
+
 </resources>

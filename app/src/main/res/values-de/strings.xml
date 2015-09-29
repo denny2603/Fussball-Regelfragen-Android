@@ -33,4 +33,19 @@
 
     <string name="OK">OK</string>
 
+    <!-- Settings -->
+    <string name="pref_category_general">Allgemein</string>
+    <string name="pref_positionOfRestart">Ort der Fortsetzung</string>
+    <string name="pref_positionOfRestart_active">Ort der Fortsetzung abfragen</string>
+    <string name="pref_positionOfRestart_not_active">Ort der Fortsetzung nicht abfragen</string>
+    <string name="pref_statistics">Statistik</string>
+    <string name="pref_stats_active">Statistik erstellen</string>
+    <string name="pref_stats_not_active">Keine Statistik erstellen</string>
+    <string name="pref_category_difficulty">Schwierigkeit</string>
+    <string name="pref_limit_difficulties">Schwierigkeitsgrade beschränken</string>
+    <string name="pref_limit_difficulties_on">nur ausgewählte Schwierigkeitsgrade</string>
+    <string name="pref_limit_difficulties_off">alle Schwierigkeitsgrade</string>
+    <string name="pref_limit_difficulties_aspirant">Anwärter</string>
+    <string name="pref_limit_difficulties_normal">Normal</string>
+
 </resources>

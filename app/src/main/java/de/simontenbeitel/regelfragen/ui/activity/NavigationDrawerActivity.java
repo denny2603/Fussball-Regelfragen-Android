@@ -71,9 +71,14 @@ public abstract class NavigationDrawerActivity extends AppCompatActivity impleme
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+        Intent intent;
         switch (position) {
             case SINGLE_QUESTION_POSITION:
-                Intent intent = new Intent(this, SingleQuestionActivity.class);
+                intent = new Intent(this, SingleQuestionActivity.class);
+                startActivity(intent);
+                break;
+            case SETTINGS_POSITION:
+                intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
                 break;
         }
