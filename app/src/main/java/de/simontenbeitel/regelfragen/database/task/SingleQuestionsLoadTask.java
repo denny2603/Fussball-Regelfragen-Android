@@ -44,6 +44,7 @@ public class SingleQuestionsLoadTask extends QuestionLoadTask {
                 int type = fragenCursor.getInt(fragenCursor.getColumnIndex(RegelfragenDatabase.QuestionColumns.TYPE));
                 questions.add(getQuestion(type, text, id));
             } while (fragenCursor.moveToNext());
+            fragenCursor.close();
         }
         return questions;
     }
