@@ -54,7 +54,7 @@
     <string name="pref_limit_difficulties_off">all levels</string>
     <string name="pref_key_limit_difficulties" translatable="false">pref_key_limit_difficulties</string>
     <string name="pref_limit_difficulties_aspirant">Aspirant</string>
-    <string name="pref_key_anwaerter_active" translatable="false">pref_key_anwaerter_active</string>
+    <string name="pref_key_aspirant_active" translatable="false">pref_key_aspirant_active</string>
     <string name="pref_limit_difficulties_normal">Normal</string>
     <string name="pref_key_normal_active" translatable="false">pref_key_normal_active</string>
 

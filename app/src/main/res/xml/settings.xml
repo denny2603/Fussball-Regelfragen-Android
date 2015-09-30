@@ -30,7 +30,7 @@
             android:summaryOff="@string/pref_limit_difficulties_off"
             android:defaultValue="false" />
         <CheckBoxPreference
-            android:key="@string/pref_key_anwaerter_active"
+            android:key="@string/pref_key_aspirant_active"
             android:title="@string/pref_limit_difficulties_aspirant"
             android:dependency="pref_key_limit_difficulties"
             android:defaultValue="true" />
