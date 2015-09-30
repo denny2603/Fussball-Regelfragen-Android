@@ -24,6 +24,12 @@ public abstract class NavigationDrawerActivity extends AppCompatActivity impleme
      */
     protected NavigationDrawerFragment mNavigationDrawerFragment;
 
+    /**
+     * Determine whether the Activity has reached the end of its onCreate method
+     * All subclasses must set this to 'true' in order to work correctly
+     */
+    protected boolean isCreated = false;
+
     protected void setUpNavigationDrawer() {
         mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
@@ -71,10 +77,16 @@ public abstract class NavigationDrawerActivity extends AppCompatActivity impleme
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+        if (!isCreated)
+            return;
         Intent intent;
         switch (position) {
             case SINGLE_QUESTION_POSITION:
                 intent = new Intent(this, SingleQuestionActivity.class);
+                startActivity(intent);
+                break;
+            case EXAM_POSITION:
+                intent = new Intent(this, ExamActivity.class);
                 startActivity(intent);
                 break;
             case SETTINGS_POSITION:

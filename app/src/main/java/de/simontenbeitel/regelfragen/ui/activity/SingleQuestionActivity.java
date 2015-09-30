@@ -42,7 +42,7 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
     private Set<Long> mLoadedQuestions;
     private boolean loadedAllQuestions = false;
 
-    @InjectView(R.id.question_navigation_button) Button navigationButton;
+    @InjectView(R.id.previous_question_navigation_button) Button navigationButton;
     @InjectView(R.id.questionScrollView) ScrollView questionScrollView;
     @InjectView(R.id.progress_wheel) ProgressWheel loadingCircleProgressBar;
 
@@ -56,6 +56,8 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
         mQuestions = new ArrayList<>(numberOfQuestionsToLoadEachTime + minBufferOfQuestions);
         mLoadedQuestions = new HashSet<>();
         loadNewQuestions();
+
+        isCreated = true;
     }
 
     private void replaceQuestionFragment(final QuestionFragment fragment) {
@@ -68,7 +70,7 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
         questionScrollView.setVisibility(show ? View.GONE : View.VISIBLE);
     }
 
-    @OnClick(R.id.question_navigation_button)
+    @OnClick(R.id.previous_question_navigation_button)
     public void onNavigationButtonClick() {
         if (!answeredMode) {
             answeredMode = true;
