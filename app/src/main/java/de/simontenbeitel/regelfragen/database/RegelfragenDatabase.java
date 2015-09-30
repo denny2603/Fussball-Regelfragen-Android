@@ -1,6 +1,7 @@
 package de.simontenbeitel.regelfragen.database;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -221,4 +222,18 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         return -1;
     }
 
+    /**
+     *
+     * @param projection
+     * @return
+     */
+    public static Cursor getPossibleExams(String[] projection) {
+        final RegelfragenDatabase dbInstance = getInstance();
+        final SQLiteDatabase db = dbInstance.getReadableDatabase();
+        Context context = RegelfragenApplication.getContext();
+        // TODO: 29.09.2015  Einstellungen welche Boegen noeglich sind holen
+        final String selection;
+
+        return null;
+    }
 }
