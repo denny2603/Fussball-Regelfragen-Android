@@ -35,16 +35,16 @@ public class SingleQuestionsLoadTask extends QuestionLoadTask {
         for(Long id : loadedQuestions)
             answeredQuestionsString.add(Long.toString(id));
         String[] selectionArgs = answeredQuestionsString.toArray(new String[answeredQuestionsString.size()]);
-        Cursor fragenCursor = db.query(RegelfragenDatabase.Tables.QUESTION, projection, selection, selectionArgs, null, null, "RANDOM() LIMIT " + numberOfQuestionsToLoadEachTime);
+        Cursor questionCursor = db.query(RegelfragenDatabase.Tables.QUESTION, projection, selection, selectionArgs, null, null, "RANDOM() LIMIT " + numberOfQuestionsToLoadEachTime);
         List<Question> questions = new ArrayList<>(5);
-        if (fragenCursor.moveToFirst()) {
+        if (questionCursor.moveToFirst()) {
             do {
-                long id = fragenCursor.getLong(fragenCursor.getColumnIndex(BaseColumns._ID));
-                String text = fragenCursor.getString(fragenCursor.getColumnIndex(RegelfragenDatabase.QuestionColumns.TEXT));
-                int type = fragenCursor.getInt(fragenCursor.getColumnIndex(RegelfragenDatabase.QuestionColumns.TYPE));
+                long id = questionCursor.getLong(questionCursor.getColumnIndex(BaseColumns._ID));
+                String text = questionCursor.getString(questionCursor.getColumnIndex(RegelfragenDatabase.QuestionColumns.TEXT));
+                int type = questionCursor.getInt(questionCursor.getColumnIndex(RegelfragenDatabase.QuestionColumns.TYPE));
                 questions.add(getQuestion(type, text, id));
-            } while (fragenCursor.moveToNext());
-            fragenCursor.close();
+            } while (questionCursor.moveToNext());
+            questionCursor.close();
         }
         return questions;
     }
