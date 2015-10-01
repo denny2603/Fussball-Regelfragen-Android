@@ -2,10 +2,15 @@ package de.simontenbeitel.regelfragen.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.preference.PreferenceManager;
 import android.provider.BaseColumns;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.RegelfragenApplication;
@@ -26,6 +31,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
 
     // Table names
     public interface Tables {
+
         String SERVER = "server";
         String QUESTION = "question";
         String ANSWER = "answer";
@@ -35,82 +41,81 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         String QUESTION_IN_EXAM = "question_in_exam";
         String DATABASE_VERSION = "dbversion";
     }
-
     // Table columns
     public interface ServerColumns {
+
         String URL = "url";
         String NAME = "name";
         String LAST_UPDATED = "last_updated";
         String ACTIVE = "active";
         String DELETION_FLAG = "flag";
     }
-
     public interface QuestionColumns {
+
         String SERVER = "server";
         String GUID = "guid";
         String TEXT = "text";
         String TYPE = "type";
     }
-
     public interface AnswerColumns {
+
         String SERVER = "server";
         String GUID = "guid";
         String TEXT = "text";
     }
-
     public interface AnswerQuestionColumns {
-//        String SERVER = "server";
+
+        //        String SERVER = "server";
         String GUID = "guid";
         String QUESTION = "question";
         String ANSWER = "answer";
         String POSITION = "position";
         String CORRECT = "correct";
     }
-
     public interface AnswerPossibilitiesGameSituationColumns {
+
         String SERVER = "server";
         String GUID = "guid";
         String ANSWER = "answer";
         String POSITION = "position"; // For which position is this answer? (RestartMethod, PositionOfRestart, DisciplinarySanction)
         String ASCENDING_ORDER = "asc_order"; // Order within the spinner (the lower number is above the higher one)
     }
-
     public interface ExamColumns {
+
         String SERVER = "server";
         String GUID = "guid";
         String NAME = "name";
         String DIFFICULTY = "difficulty";
         String TYPE = "type";
     }
-
     public interface QuestionInExamColumns {
+
         String QUESTION = "question";
         String GUID = "guid";
         String EXAM = "exam";
         String POSITION = "position";
     }
-
     // values
     public interface BooleanValues {
+
         int TRUE = 1;
         int FALSE = 0;
     }
-
     public interface QuestionTypeValues {
+
         int GAMESITUATION = 1;
         int MULTIPLECHOICE = 2;
     }
-
     public interface DifficultyValues {
+
         int ASPIRANT = 1;
         int NORMAL = 2;
     }
-
     public interface ExamTypeValues {
+
         int NORMAL = 1;
         int SCHIEDSRICHTER_ZEITUNG = 2;
     }
-
     private static RegelfragenDatabase sInstance;
 
     private RegelfragenDatabase() {
@@ -224,16 +229,47 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
 
     /**
      *
-     * @param projection
+     * @param projection desired columns
      * @return
      */
     public static Cursor getPossibleExams(String[] projection) {
         final RegelfragenDatabase dbInstance = getInstance();
         final SQLiteDatabase db = dbInstance.getReadableDatabase();
         Context context = RegelfragenApplication.getContext();
-        // TODO: 29.09.2015  Einstellungen welche Boegen noeglich sind holen
-        final String selection;
 
-        return null;
+        String selection = null;
+        String[] selectionArgs = null;
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean limitDifficulties = sharedPref.getBoolean(context.getString(R.string.pref_key_limit_difficulties), false);
+        if (limitDifficulties) {
+            Set<String> activeDifficulties = new HashSet<>();
+
+            boolean normalDifficultyActive = sharedPref.getBoolean(context.getString(R.string.pref_key_normal_active), true);
+            if (normalDifficultyActive) {
+                activeDifficulties.add(Long.toString(DifficultyValues.NORMAL));
+            }
+
+            boolean aspirantDifficultyActive = sharedPref.getBoolean(context.getString(R.string.pref_key_aspirant_active), true);
+            if (normalDifficultyActive) {
+                activeDifficulties.add(Long.toString(DifficultyValues.ASPIRANT));
+            }
+
+            selectionArgs = activeDifficulties.toArray(new String[activeDifficulties.size()]);
+            selection = ExamColumns.DIFFICULTY + " IN (" + makePlaceholders(selectionArgs.length) + ")";
+        }
+
+        return db.query(Tables.EXAM, projection, selection, selectionArgs, null, null, null);
     }
+
+    public static String makePlaceholders(int length) {
+        if(length <= 0) return "";
+        StringBuilder sb = new StringBuilder(length * 2 - 1);
+        sb.append("?");
+        for (int i = 1; i < length; i++) {
+            sb.append(",?");
+        }
+        return sb.toString();
+    }
+
 }

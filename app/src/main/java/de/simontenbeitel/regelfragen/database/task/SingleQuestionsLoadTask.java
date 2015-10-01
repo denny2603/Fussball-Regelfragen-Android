@@ -30,7 +30,7 @@ public class SingleQuestionsLoadTask extends QuestionLoadTask {
 
     private List<Question> getSingleQuestions(Long... loadedQuestions) {
         String[] projection = new String[] {BaseColumns._ID, RegelfragenDatabase.QuestionColumns.TEXT, RegelfragenDatabase.QuestionColumns.TYPE};
-        String selection = BaseColumns._ID + " NOT IN (" + makePlaceholders(loadedQuestions.length) + ")";
+        String selection = BaseColumns._ID + " NOT IN (" + RegelfragenDatabase.makePlaceholders(loadedQuestions.length) + ")";
         Set<String> answeredQuestionsString = new HashSet<String>(loadedQuestions.length);
         for(Long id : loadedQuestions)
             answeredQuestionsString.add(Long.toString(id));
@@ -47,16 +47,6 @@ public class SingleQuestionsLoadTask extends QuestionLoadTask {
             questionCursor.close();
         }
         return questions;
-    }
-
-    private static String makePlaceholders(int length) {
-        if(length <= 0) return "";
-        StringBuilder sb = new StringBuilder(length * 2 - 1);
-        sb.append("?");
-        for (int i = 1; i < length; i++) {
-            sb.append(",?");
-        }
-        return sb.toString();
     }
 
 }
