@@ -45,7 +45,7 @@ public class ExamLoadTask extends QuestionLoadTask{
         String[] projection = new String[] {"q." + BaseColumns._ID,
                 "q." + RegelfragenDatabase.QuestionColumns.TEXT,
                 "q." + RegelfragenDatabase.QuestionColumns.TYPE};
-        String selection = "qie." + BaseColumns._ID + "=?";
+        String selection = "qie." + RegelfragenContract.QuestionInExam.Columns.EXAM + "=?";
         String[] selectionArgs = new String[] {Long.toString(examId)};
         Cursor questionsCursor = db.query(table, projection, selection, selectionArgs, null, null, "qie." + RegelfragenContract.QuestionInExam.Columns.POSITION + " ASC");
 
