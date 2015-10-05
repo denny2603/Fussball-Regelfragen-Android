@@ -1,5 +1,6 @@
 package de.simontenbeitel.regelfragen.ui.fragment;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,16 +35,20 @@ public class GameSituationQuestionFragment extends QuestionFragment implements A
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_gamesituation_question, container, false);
         ButterKnife.inject(this, view);
-        new AnswerPossibilitiesGameSituationLoadTask(mQuestion.getId(), this).execute(0, 1, 2);
+        new AnswerPossibilitiesGameSituationLoadTask(mQuestion.getId(), this).execute(0, 1, 2); // TODO: 05.10.2015 check if position of restart is active
         replaceAnswerContainer(rootView, view);
         return rootView;
     }
 
     public void fillSpinner(Cursor[] answerPossibilitiesCursors) {
+        Context context = getContext();
+        if (null == context) {
+            return;
+        }
         final String[] projection = new String[]{RegelfragenDatabase.AnswerColumns.TEXT};
         SimpleCursorAdapter[] adapters = new SimpleCursorAdapter[answerPossibilitiesCursors.length];
         for (int index = 0; index < answerPossibilitiesCursors.length; index++) {
-            adapters[index] = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_spinner_item, answerPossibilitiesCursors[index], projection, new int[]{android.R.id.text1}, SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+            adapters[index] = new SimpleCursorAdapter(context, android.R.layout.simple_spinner_item, answerPossibilitiesCursors[index], projection, new int[]{android.R.id.text1}, SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
             adapters[index].setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         }
 
