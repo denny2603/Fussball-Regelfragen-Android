@@ -25,7 +25,7 @@
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <TextView
-                android:id="@+id/pruefungFortschritt_TextView"
+                android:id="@+id/examProgress_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -33,7 +33,7 @@
                 android:layout_alignParentTop="true" />
 
             <TextView
-                android:id="@+id/pruefungTimer_TextView"
+                android:id="@+id/examTimer_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

@@ -47,5 +47,10 @@
     <string name="pref_limit_difficulties_off">alle Schwierigkeitsgrade</string>
     <string name="pref_limit_difficulties_aspirant">Anwärter</string>
     <string name="pref_limit_difficulties_normal">Normal</string>
+    <string name="examProgressText">Frage %1$s von %2$s</string>
+    <string name="handInDialogTitle">Abgeben</string>
+    <string name="handInDialogMessage">Bist du sicher, dass du abgeben möchtest? Danach kannst du deine Antworten nicht mehr Ändern.</string>
+    <string name="no">Nein</string>
+    <string name="yes">Ja</string>
 
 </resources>

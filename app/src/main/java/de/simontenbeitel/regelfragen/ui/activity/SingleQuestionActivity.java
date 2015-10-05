@@ -77,7 +77,6 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
             final Question question = mQuestions.get(0);
             final QuestionFragment fragment = AnsweredQuestionFragment.newAnsweredFragment(question);
             replaceQuestionFragment(fragment);
-            mLoadedQuestions.add(question.getId());
             mQuestions.remove(0);
             if (minBufferOfQuestions > mQuestions.size() && !loadedAllQuestions) loadNewQuestions();
         } else {

@@ -36,7 +36,14 @@
     <string name="noMoreQuestionsTitle">No more questions</string>
     <string name="noMoreQuestionsMessage">You answered all questions. Please click \'OK\' and the questions will be shuffled again.</string>
 
+    <!-- exam -->
+    <string name="examProgressText">Question %1$s of %2$s</string>
+    <string name="handInDialogTitle">Hand In</string>
+    <string name="handInDialogMessage">Are you sure you want to hand in this exam? You won\'t be able to edit your answers afterwards.</string>
+
     <string name="OK">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- Settings -->
     <string name="pref_category_general">General</string>
