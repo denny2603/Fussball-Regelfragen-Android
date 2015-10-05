@@ -35,7 +35,6 @@ public abstract class QuestionLoadTask extends AsyncTask<Long, Void, List<Questi
     @Override
     protected void onPostExecute(List<Question> questions) {
         super.onPostExecute(questions);
-        db.close();
         if (null != mCallback) mCallback.onQuestionsLoadFinished(questions);
     }
 
