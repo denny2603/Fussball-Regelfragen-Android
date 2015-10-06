@@ -251,7 +251,7 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
             }
 
             boolean aspirantDifficultyActive = sharedPref.getBoolean(context.getString(R.string.pref_key_aspirant_active), true);
-            if (normalDifficultyActive) {
+            if (aspirantDifficultyActive) {
                 activeDifficulties.add(Long.toString(DifficultyValues.ASPIRANT));
             }
 
