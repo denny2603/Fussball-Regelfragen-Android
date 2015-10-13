@@ -40,6 +40,8 @@
     <string name="examProgressText">Question %1$s of %2$s</string>
     <string name="handInDialogTitle">Hand In</string>
     <string name="handInDialogMessage">Are you sure you want to hand in this exam? You won\'t be able to edit your answers afterwards.</string>
+    <string name="exitExamDialogTitle">Exit Exam</string>
+    <string name="exitExamDialogMessage">Are you sure you want to exit this exam? Once you leave you won\'t be able to come back and have to start from scratch.</string>
 
     <string name="OK">OK</string>
     <string name="yes">Yes</string>

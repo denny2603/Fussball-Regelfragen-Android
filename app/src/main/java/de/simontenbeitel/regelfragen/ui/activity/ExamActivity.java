@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -94,8 +96,6 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
         super.onDestroy();
         if (isFinishing()) {
             ExamTimer.destroy();
-            QuestionListRetainedFragment dataFragment = (QuestionListRetainedFragment) mFragmentManager.findFragmentByTag(QuestionListRetainedFragment.TAG_QUESTION_LIST_RETAINED_FRAGMENT);
-            mFragmentManager.beginTransaction().remove(dataFragment).commit();
         } else {
             // configuration change
         }
@@ -167,11 +167,34 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
     }
 
     private void handInExam() {
+        Bundle extras = new Bundle();
+        extras.putSerializable("questions", (Serializable) mQuestions);
+    }
 
+    private void showExitExamDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.exitExamDialogTitle)
+                .setMessage(R.string.exitExamDialogMessage)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                })
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .create();
+        dialog.show();
     }
 
     @Override
     public void onQuestionsLoadFinished(List<Question> questions) {
+        if (! (questions instanceof Serializable)) {
+            throw new RuntimeException("Questions list for exam must implement Serializable!");
+        }
         mQuestions = questions;
         QuestionListRetainedFragment dataFragment = (QuestionListRetainedFragment) mFragmentManager.findFragmentByTag(QuestionListRetainedFragment.TAG_QUESTION_LIST_RETAINED_FRAGMENT);
         dataFragment.setQuestions(mQuestions);
@@ -190,4 +213,8 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
         examTimerTextView.setText(timePassed);
     }
 
+    @Override
+    public void onBackPressed() {
+        showExitExamDialog();
+    }
 }
