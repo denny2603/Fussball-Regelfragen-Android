@@ -28,8 +28,8 @@ public class AnsweredQuestionFragment extends QuestionFragment {
         return rootView;
     }
 
-    public static QuestionFragment newAnsweredFragment(Question question) {
-        QuestionFragment fragment;
+    public static AnsweredQuestionFragment newAnsweredFragment(Question question) {
+        AnsweredQuestionFragment fragment;
         if (question instanceof GameSituationQuestion) {
             fragment = new GameSituationAnsweredFragment();
         } else if (question instanceof MultipleChoiceQuestion) {
