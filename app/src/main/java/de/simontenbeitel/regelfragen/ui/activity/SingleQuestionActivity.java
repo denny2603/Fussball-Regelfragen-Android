@@ -15,8 +15,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.database.task.QuestionLoadTask;
@@ -42,16 +42,16 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
     private Set<Long> mLoadedQuestions;
     private boolean loadedAllQuestions = false;
 
-    @InjectView(R.id.previous_question_navigation_button) Button navigationButton;
-    @InjectView(R.id.questionScrollView) ScrollView questionScrollView;
-    @InjectView(R.id.progress_wheel) ProgressWheel loadingCircleProgressBar;
+    @Bind(R.id.previous_question_navigation_button) Button navigationButton;
+    @Bind(R.id.questionScrollView) ScrollView questionScrollView;
+    @Bind(R.id.progress_wheel) ProgressWheel loadingCircleProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singlequestion);
         setUpNavigationDrawer();
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         mFragmentManager = getSupportFragmentManager();
         mQuestions = new ArrayList<>(numberOfQuestionsToLoadEachTime + minBufferOfQuestions);
         mLoadedQuestions = new HashSet<>();

@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import java.security.InvalidParameterException;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
 import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
@@ -50,10 +50,10 @@ public abstract class QuestionFragment extends Fragment {
     protected Question mQuestion;
 
     static class ViewHolder {
-        @InjectView(R.id.question_text) TextView question_text;
+        @Bind(R.id.question_text) TextView question_text;
 
         public ViewHolder(View view) {
-            ButterKnife.inject(this, view);
+            ButterKnife.bind(this, view);
         }
     }
 

@@ -25,7 +25,7 @@ dependencies {
     // Android support
     compile 'com.android.support:appcompat-v7:23.0.1'
 
-    compile 'com.jakewharton:butterknife:6.1.0' // Library for view injection (Apache License v2)
+    compile 'com.jakewharton:butterknife:7.0.1' // Library for view injection (Apache License v2)
     compile 'com.pnikosis:materialish-progress:1.5' // A material style progress wheel compatible with Android 2.3 (Apache License v2)
     compile 'com.squareup.retrofit:retrofit:1.9.0' // Interface for API calls (Apache License v2)
     compile 'com.afollestad:material-dialogs:0.7.9.1' // Material like dialogs for pre-lollipop (MIT License)

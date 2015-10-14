@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.database.task.ExamLoadTask;
@@ -45,19 +45,19 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
     private List<Question> mQuestions;
     private int mPosition = 0; //current question
 
-    @InjectView(R.id.progress_wheel) ProgressWheel loadingCircleProgressBar;
-    @InjectView(R.id.questionScrollView) ScrollView questionScrollView;
-    @InjectView(R.id.examProgress_TextView) TextView examProgressTextView;
-    @InjectView(R.id.examTimer_TextView) TextView examTimerTextView;
-    @InjectView(R.id.previous_question_navigation_button) Button previousQuestionButton;
-    @InjectView(R.id.next_question_navigation_button) Button nextQuestionButton;
+    @Bind(R.id.progress_wheel) ProgressWheel loadingCircleProgressBar;
+    @Bind(R.id.questionScrollView) ScrollView questionScrollView;
+    @Bind(R.id.examProgress_TextView) TextView examProgressTextView;
+    @Bind(R.id.examTimer_TextView) TextView examTimerTextView;
+    @Bind(R.id.previous_question_navigation_button) Button previousQuestionButton;
+    @Bind(R.id.next_question_navigation_button) Button nextQuestionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam);
         setUpNavigationDrawer();
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         showLoadingCircle(true);
         mFragmentManager = getSupportFragmentManager();
 

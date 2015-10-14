@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.database.RegelfragenDatabase;
 import de.simontenbeitel.regelfragen.database.task.AnswerPossibilitiesGameSituationLoadTask;
@@ -25,19 +25,25 @@ import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
  */
 public class GameSituationQuestionFragment extends QuestionFragment implements AdapterView.OnItemSelectedListener {
 
-    @InjectView(R.id.spinner_restartMethod) Spinner restartMethod;
-    @InjectView(R.id.spinner_positionOfRestart) Spinner positionOfRestart;
-    @InjectView(R.id.spinner_disciplinarySanction) Spinner disciplinarySanction;
+    @Bind(R.id.spinner_restartMethod) Spinner restartMethod;
+    @Bind(R.id.spinner_positionOfRestart) Spinner positionOfRestart;
+    @Bind(R.id.spinner_disciplinarySanction) Spinner disciplinarySanction;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_gamesituation_question, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         new AnswerPossibilitiesGameSituationLoadTask(mQuestion.getId(), this).execute(0, 1, 2); // TODO: 05.10.2015 check if position of restart is active
         replaceAnswerContainer(rootView, view);
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     public void fillSpinner(Cursor[] answerPossibilitiesCursors) {

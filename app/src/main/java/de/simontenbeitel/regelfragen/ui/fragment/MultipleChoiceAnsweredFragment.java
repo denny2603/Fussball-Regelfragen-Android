@@ -9,8 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
 
@@ -19,17 +19,23 @@ import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
  */
 public class MultipleChoiceAnsweredFragment extends AnsweredQuestionFragment {
 
-    @InjectView(R.id.multipleChoiceAnswerContainer) LinearLayout answerContainer;
+    @Bind(R.id.multipleChoiceAnswerContainer) LinearLayout answerContainer;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_multiplechoice_answered, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         printAnswers(inflater, container);
         replaceAnswerContainer(rootView, view);
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     private void printAnswers(LayoutInflater inflater, ViewGroup container) {

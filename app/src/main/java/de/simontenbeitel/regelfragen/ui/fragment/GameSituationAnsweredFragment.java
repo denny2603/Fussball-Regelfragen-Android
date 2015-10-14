@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
 
@@ -18,25 +18,31 @@ import de.simontenbeitel.regelfragen.objects.GameSituationQuestion;
  */
 public class GameSituationAnsweredFragment extends AnsweredQuestionFragment {
 
-    @InjectView(R.id.restartMethod_chosen) TextView restartMethod_chosen;
-    @InjectView(R.id.restartMethod_solution) TextView restartMethod_solution;
-    @InjectView(R.id.restartMethod_correct) ImageView restartMethod_correct;
-    @InjectView(R.id.positionOfRestart_chosen) TextView positionOfRestart_chosen;
-    @InjectView(R.id.positionOfRestart_solution) TextView positionOfRestart_solution;
-    @InjectView(R.id.positionOfRestart_correct) ImageView positionOfRestart_correct;
-    @InjectView(R.id.disciplinarySanction_chosen) TextView disciplinarySanction_chosen;
-    @InjectView(R.id.disciplinarySanction_solution) TextView disciplinarySanction_solution;
-    @InjectView(R.id.disciplinarySanction_correct) ImageView disciplinarySanction_correct;
+    @Bind(R.id.restartMethod_chosen) TextView restartMethod_chosen;
+    @Bind(R.id.restartMethod_solution) TextView restartMethod_solution;
+    @Bind(R.id.restartMethod_correct) ImageView restartMethod_correct;
+    @Bind(R.id.positionOfRestart_chosen) TextView positionOfRestart_chosen;
+    @Bind(R.id.positionOfRestart_solution) TextView positionOfRestart_solution;
+    @Bind(R.id.positionOfRestart_correct) ImageView positionOfRestart_correct;
+    @Bind(R.id.disciplinarySanction_chosen) TextView disciplinarySanction_chosen;
+    @Bind(R.id.disciplinarySanction_solution) TextView disciplinarySanction_solution;
+    @Bind(R.id.disciplinarySanction_correct) ImageView disciplinarySanction_correct;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_gamesituation_answered, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         printContent();
         replaceAnswerContainer(rootView, view);
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     private void printContent() {

@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
 
@@ -21,17 +21,23 @@ import de.simontenbeitel.regelfragen.objects.MultipleChoiceQuestion;
  */
 public class MultipleChoiceQuestionFragment extends QuestionFragment implements RadioGroup.OnCheckedChangeListener {
 
-    @InjectView(R.id.multipleChoiceQuestion_radioGroup) RadioGroup radioGroup;
+    @Bind(R.id.multipleChoiceQuestion_radioGroup) RadioGroup radioGroup;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_multiplechoice_question, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         fillRadioGroup();
         replaceAnswerContainer(rootView, view);
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     private void fillRadioGroup() {
