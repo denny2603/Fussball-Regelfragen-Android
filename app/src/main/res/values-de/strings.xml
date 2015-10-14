@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- todo: fix order of strings. this got crappy because I use translation editor -->
+
     <!-- Überschriften -->
     <string name="title_singleQuestion">Einzelfragen</string>
     <string name="title_exam">Prüfung</string>
@@ -54,5 +56,7 @@
     <string name="yes">Ja</string>
     <string name="exitExamDialogTitle">Prüfung Beenden</string>
     <string name="exitExamDialogMessage">Bist du sicher, dass du die Prüfung beenden möchtest? Danach kannst du nicht mehr zurück, sondern musst die Prüfung erneut beginnen.</string>
+    <string name="questionWithNumber">Frage %1$s</string>
+    <string name="title_evaluated_exam">Auswertung</string>
 
 </resources>

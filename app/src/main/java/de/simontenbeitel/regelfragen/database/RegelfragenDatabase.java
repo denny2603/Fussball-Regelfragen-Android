@@ -40,6 +40,8 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         String EXAM = "exam";
         String QUESTION_IN_EXAM = "question_in_exam";
         String DATABASE_VERSION = "dbversion";
+        String ANSWERED_EXAM = "answered_exam";
+        String ANSWERED_QUESTION = "answered_question";
     }
     // Table columns
     public interface ServerColumns {
@@ -95,6 +97,19 @@ public class RegelfragenDatabase extends SQLiteOpenHelper {
         String EXAM = "exam";
         String POSITION = "position";
     }
+    public interface AnsweredExamColumns {
+        String EXAM = "exam";
+        String FAULTS = "faults";
+        String TIMESTAMP = "answered_timestamp";
+    }
+    public interface AnsweredQuestionColumns {
+        String QUESTION = "question";
+        String POSITION = "position";
+        String FAULTS = "faults";
+        String ANSWERED_EXAM = "answered_exam";
+        String TIMESTAMP = "answered_timestamp";
+    }
+
     // values
     public interface BooleanValues {
 

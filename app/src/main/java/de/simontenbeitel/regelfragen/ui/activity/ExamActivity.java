@@ -1,6 +1,7 @@
 package de.simontenbeitel.regelfragen.ui.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -13,7 +14,6 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +24,6 @@ import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.database.task.ExamLoadTask;
 import de.simontenbeitel.regelfragen.database.task.QuestionLoadTask;
 import de.simontenbeitel.regelfragen.objects.Question;
-import de.simontenbeitel.regelfragen.ui.fragment.AnsweredQuestionFragment;
 import de.simontenbeitel.regelfragen.ui.fragment.QuestionFragment;
 import de.simontenbeitel.regelfragen.ui.fragment.QuestionListRetainedFragment;
 import de.simontenbeitel.regelfragen.ui.provider.ExamTimer;
@@ -162,13 +161,21 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
                         mPosition--;
                     }
                 })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        mPosition--;
+                    }
+                })
                 .create();
         dialog.show();
     }
 
     private void handInExam() {
-        Bundle extras = new Bundle();
-        extras.putSerializable("questions", (Serializable) mQuestions);
+        Intent intent = new Intent(this, AssessedExamActivity.class);
+        intent.putExtra(AssessedExamActivity.QUESTION_LIST_EXTRA, (Serializable) mQuestions);
+        startActivity(intent);
+        finish();
     }
 
     private void showExitExamDialog() {
