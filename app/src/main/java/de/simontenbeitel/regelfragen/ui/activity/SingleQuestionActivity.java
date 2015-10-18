@@ -4,10 +4,13 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.simontenbeitel.regelfragen.R;
+import de.simontenbeitel.regelfragen.RegelfragenApplication;
 import de.simontenbeitel.regelfragen.database.task.QuestionLoadTask;
 import de.simontenbeitel.regelfragen.database.task.SingleQuestionsLoadTask;
 import de.simontenbeitel.regelfragen.objects.Question;
@@ -46,6 +50,8 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
     @Bind(R.id.questionScrollView) ScrollView questionScrollView;
     @Bind(R.id.progress_wheel) ProgressWheel loadingCircleProgressBar;
 
+    private Tracker mTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +63,20 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
         mLoadedQuestions = new HashSet<>();
         loadNewQuestions();
 
+        // Obtain the shared Tracker instance.
+        RegelfragenApplication application = (RegelfragenApplication) getApplication();
+        mTracker = application.getDefaultTracker();
+
         isCreated = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Log opening this screen in Google Analytics
+        mTracker.setScreenName(SingleQuestionActivity.class.getName());
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     private void replaceQuestionFragment(final QuestionFragment fragment) {
