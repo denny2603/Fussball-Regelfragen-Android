@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.RegelfragenApplication;
+import de.simontenbeitel.regelfragen.analytics.GoogleAnalyticsHelper;
 import de.simontenbeitel.regelfragen.database.task.QuestionLoadTask;
 import de.simontenbeitel.regelfragen.database.task.SingleQuestionsLoadTask;
 import de.simontenbeitel.regelfragen.objects.Question;
@@ -64,8 +65,7 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
         loadNewQuestions();
 
         // Obtain the shared Tracker instance.
-        RegelfragenApplication application = (RegelfragenApplication) getApplication();
-        mTracker = application.getDefaultTracker();
+        mTracker = RegelfragenApplication.getDefaultTracker();
 
         isCreated = true;
     }
@@ -98,6 +98,8 @@ public class SingleQuestionActivity extends NavigationDrawerActivity implements 
             replaceQuestionFragment(fragment);
             mQuestions.remove(0);
             if (minBufferOfQuestions > mQuestions.size() && !loadedAllQuestions) loadNewQuestions();
+
+            GoogleAnalyticsHelper.sendQuestionEvent(question);
         } else {
             showNextQuestion();
         }

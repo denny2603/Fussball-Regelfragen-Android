@@ -87,6 +87,11 @@ public class GameSituationQuestion extends Question {
         return 1;
     }
 
+    @Override
+    public String getQuestionTypeName() {
+        return "GameSituationQuestion";
+    }
+
     /**
      * Prints the solution to the given widgets
      *

@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.io.Serializable;
@@ -21,6 +23,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.simontenbeitel.regelfragen.R;
+import de.simontenbeitel.regelfragen.RegelfragenApplication;
+import de.simontenbeitel.regelfragen.analytics.ExamToGoogleAnalyticsService;
 import de.simontenbeitel.regelfragen.database.task.ExamLoadTask;
 import de.simontenbeitel.regelfragen.database.task.QuestionLoadTask;
 import de.simontenbeitel.regelfragen.objects.Question;
@@ -50,6 +54,8 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
     @Bind(R.id.examTimer_TextView) TextView examTimerTextView;
     @Bind(R.id.previous_question_navigation_button) Button previousQuestionButton;
     @Bind(R.id.next_question_navigation_button) Button nextQuestionButton;
+
+    private Tracker mTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +87,19 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
             startExam();
         }
 
+        // Obtain the shared Tracker instance.
+        mTracker = RegelfragenApplication.getDefaultTracker();
+
         isCreated = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Log opening this screen in Google Analytics
+        mTracker.setScreenName(ExamActivity.class.getName());
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -172,6 +190,10 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
     }
 
     private void handInExam() {
+        Intent serviceIntent = new Intent(this, ExamToGoogleAnalyticsService.class);
+        serviceIntent.putExtra(ExamToGoogleAnalyticsService.QUESTION_LIST_EXTRA, (Serializable) mQuestions);
+        startService(serviceIntent);
+
         Intent intent = new Intent(this, AssessedExamActivity.class);
         intent.putExtra(AssessedExamActivity.QUESTION_LIST_EXTRA, (Serializable) mQuestions);
         startActivity(intent);

@@ -55,6 +55,9 @@ public class RegelfragenContentProvider extends ContentProvider {
         final SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
 
         switch (sURIMatcher.match(uri)) {
+            case QUESTION:
+                qb.setTables(RegelfragenDatabase.Tables.QUESTION);
+                break;
             case SERVER:
                 qb.setTables(RegelfragenDatabase.Tables.SERVER);
                 break;

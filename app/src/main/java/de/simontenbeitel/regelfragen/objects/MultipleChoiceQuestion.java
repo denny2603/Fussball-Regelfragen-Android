@@ -38,6 +38,11 @@ public class MultipleChoiceQuestion extends Question {
         return solutionIndex == chosenAnswerIndex ? 0 : 1;
     }
 
+    @Override
+    public String getQuestionTypeName() {
+        return "MultipleChoiceQuestion";
+    }
+
     public int getSolutionIndex() {
         return solutionIndex;
     }

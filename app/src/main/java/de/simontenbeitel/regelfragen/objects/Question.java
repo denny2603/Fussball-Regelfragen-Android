@@ -39,6 +39,13 @@ public abstract class Question implements Serializable {
      */
     public abstract double getFaults();
 
+    /**
+     * Get the name of the question type.
+     *
+     * @return {@link GameSituationQuestion} or {@link MultipleChoiceQuestion} as String
+     */
+    public abstract String getQuestionTypeName();
+
     public void printFaults(TextView faultsTextView) {
         double faults = getFaults();
         Context context = RegelfragenApplication.getContext();
