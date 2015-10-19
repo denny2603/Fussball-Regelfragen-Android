@@ -241,7 +241,7 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
 
     @Override
     public void OnTimerTick(int seconds) {
-        int remainingSeconds = (mQuestions.size()/* * 60*/) - seconds;
+        int remainingSeconds = (mQuestions.size() * 60) - seconds;
         if (0 > remainingSeconds) {
             return;
         } else if (0 == remainingSeconds) {
