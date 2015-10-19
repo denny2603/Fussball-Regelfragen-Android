@@ -2,6 +2,7 @@ package de.simontenbeitel.regelfragen.ui.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -48,12 +49,18 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
     private List<Question> mQuestions;
     private int mPosition = 0; //current question
 
-    @Bind(R.id.progress_wheel) ProgressWheel loadingCircleProgressBar;
-    @Bind(R.id.questionScrollView) ScrollView questionScrollView;
-    @Bind(R.id.examProgress_TextView) TextView examProgressTextView;
-    @Bind(R.id.examTimer_TextView) TextView examTimerTextView;
-    @Bind(R.id.previous_question_navigation_button) Button previousQuestionButton;
-    @Bind(R.id.next_question_navigation_button) Button nextQuestionButton;
+    @Bind(R.id.progress_wheel)
+    ProgressWheel loadingCircleProgressBar;
+    @Bind(R.id.questionScrollView)
+    ScrollView questionScrollView;
+    @Bind(R.id.examProgress_TextView)
+    TextView examProgressTextView;
+    @Bind(R.id.examTimer_TextView)
+    TextView examTimerTextView;
+    @Bind(R.id.previous_question_navigation_button)
+    Button previousQuestionButton;
+    @Bind(R.id.next_question_navigation_button)
+    Button nextQuestionButton;
 
     private Tracker mTracker;
 
@@ -221,7 +228,7 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
 
     @Override
     public void onQuestionsLoadFinished(List<Question> questions) {
-        if (! (questions instanceof Serializable)) {
+        if (!(questions instanceof Serializable)) {
             throw new RuntimeException("Questions list for exam must implement Serializable!");
         }
         mQuestions = questions;
@@ -234,12 +241,47 @@ public class ExamActivity extends NavigationDrawerActivity implements QuestionLo
 
     @Override
     public void OnTimerTick(int seconds) {
-        int remainingSeconds = (mQuestions.size() * 60) - seconds;
+        int remainingSeconds = (mQuestions.size()/* * 60*/) - seconds;
+        if (0 > remainingSeconds) {
+            return;
+        } else if (0 == remainingSeconds) {
+            showTimeElapsedDialog();
+        }
+        setRemainingTime(remainingSeconds);
+    }
+
+    private void setRemainingTime(int remainingSeconds) {
         Date date = new Date();
         date.setMinutes(remainingSeconds / 60);
         date.setSeconds(remainingSeconds % 60);
-        String timePassed = new SimpleDateFormat("mm:ss").format(date);
-        examTimerTextView.setText(timePassed);
+        String timeRemaining = new SimpleDateFormat("mm:ss").format(date);
+        examTimerTextView.setText(timeRemaining);
+    }
+
+    private void showTimeElapsedDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.timeElapsedDialogTitle)
+                .setMessage(R.string.timeElapsedDialogMessage)
+                .setPositiveButton(R.string.timeElapsedDialogHandInButton, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        handInExam();
+                    }
+                })
+                .setNegativeButton(R.string.timeElapsedDialogContinueButton, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        examTimerTextView.setTextColor(Color.RED);
+                    }
+                })
+                .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        examTimerTextView.setTextColor(Color.RED);
+                    }
+                })
+                .create();
+        dialog.show();
     }
 
     @Override

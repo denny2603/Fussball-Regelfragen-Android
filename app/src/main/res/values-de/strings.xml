@@ -58,5 +58,9 @@
     <string name="exitExamDialogMessage">Bist du sicher, dass du die Prüfung beenden möchtest? Danach kannst du nicht mehr zurück, sondern musst die Prüfung erneut beginnen.</string>
     <string name="questionWithNumber">Frage %1$s</string>
     <string name="title_evaluated_exam">Auswertung</string>
+    <string name="timeElapsedDialogContinueButton">Prüfung fortsetzen</string>
+    <string name="timeElapsedDialogHandInButton">Abgeben</string>
+    <string name="timeElapsedDialogMessage">Die Zeit ist abgelaufen. Wenn du möchtest, kannst du die Prüfung dennoch fortsetzen.</string>
+    <string name="timeElapsedDialogTitle">Zeit abgelaufen</string>
 
 </resources>
