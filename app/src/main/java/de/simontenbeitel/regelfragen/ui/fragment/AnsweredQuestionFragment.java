@@ -3,6 +3,8 @@ package de.simontenbeitel.regelfragen.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -19,6 +21,12 @@ import de.simontenbeitel.regelfragen.objects.Question;
  * @author Simon Tenbeitel
  */
 public class AnsweredQuestionFragment extends QuestionFragment {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Nullable
     @Override
@@ -62,4 +70,9 @@ public class AnsweredQuestionFragment extends QuestionFragment {
         super.replaceAnswerContainer(container, answerRootView);
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.assessed_question, menu);
+    }
 }

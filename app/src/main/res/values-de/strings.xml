@@ -62,5 +62,7 @@
     <string name="timeElapsedDialogHandInButton">Abgeben</string>
     <string name="timeElapsedDialogMessage">Die Zeit ist abgelaufen. Wenn du möchtest, kannst du die Prüfung dennoch fortsetzen.</string>
     <string name="timeElapsedDialogTitle">Zeit abgelaufen</string>
+    <string name="showExplanation">Erläuterung</string>
+    <string name="wrongSolution">Falsche Lösung?</string>
 
 </resources>

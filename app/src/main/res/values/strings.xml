@@ -36,6 +36,8 @@
     <string name="default_server">Default server</string>
     <string name="noMoreQuestionsTitle">No more questions</string>
     <string name="noMoreQuestionsMessage">You answered all questions. Please click \'OK\' and the questions will be shuffled again.</string>
+    <string name="showExplanation">Explanation</string>
+    <string name="wrongSolution">Wrong solution?</string>
 
     <!-- exam -->
     <string name="examProgressText">Question %1$s of %2$s</string>
