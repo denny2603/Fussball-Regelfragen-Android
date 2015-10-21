@@ -7,6 +7,7 @@ android {
 
     defaultConfig {
         applicationId "de.simontenbeitel.regelfragen"
+        multiDexEnabled true
         minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
@@ -25,10 +26,16 @@ dependencies {
 
     // Android support
     compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.google.android.gms:play-services-analytics:8.1.0'
+    compile ('com.google.android.gms:play-services-analytics:8.1.0') {
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
 
     compile 'com.jakewharton:butterknife:7.0.1' // Library for view injection (Apache License v2)
-    compile 'com.pnikosis:materialish-progress:1.5' // A material style progress wheel compatible with Android 2.3 (Apache License v2)
+    compile ('com.pnikosis:materialish-progress:1.5') {
+        exclude group: 'com.android.support', module: 'support-v4'
+    } // A material style progress wheel compatible with Android 2.3 (Apache License v2)
     compile 'com.squareup.retrofit:retrofit:1.9.0' // Interface for API calls (Apache License v2)
-    compile 'com.afollestad:material-dialogs:0.7.9.1' // Material like dialogs for pre-lollipop (MIT License)
+    compile ('com.afollestad:material-dialogs:0.7.9.1') {
+        exclude group: 'com.android.support', module: 'support-v4'
+    } // Material like dialogs for pre-lollipop (MIT License)
 }
