@@ -1,6 +1,8 @@
 # Fussball Regelfragen Android-App
 An app to answer questions about the laws of soccer
 
+[![Build Status](https://travis-ci.org/simontb/Fussball-Regelfragen-Android.svg?branch=develop)](https://travis-ci.org/simontb/Fussball-Regelfragen-Android)
+
 License
 -------
 
