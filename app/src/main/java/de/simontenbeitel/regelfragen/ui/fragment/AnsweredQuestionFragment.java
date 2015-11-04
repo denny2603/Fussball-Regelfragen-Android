@@ -5,10 +5,12 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.security.InvalidParameterException;
 
@@ -75,4 +77,20 @@ public class AnsweredQuestionFragment extends QuestionFragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.assessed_question, menu);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.show_explanation:
+                Toast.makeText(getContext(), "TODO: Implement", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.wrong_solution:
+                Toast.makeText(getContext(), "TODO: Implement", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
+    }
+
 }
