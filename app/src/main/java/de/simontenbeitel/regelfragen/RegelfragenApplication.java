@@ -28,6 +28,7 @@ public class RegelfragenApplication extends Application {
         GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
         // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
         sTracker = analytics.newTracker(R.xml.global_tracker);
+        sTracker.setAnonymizeIp(true);
     }
 
     public static Context getContext() {
