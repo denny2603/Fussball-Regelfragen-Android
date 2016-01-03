@@ -22,7 +22,7 @@ import de.simontenbeitel.regelfragen.objects.Question;
 public class AssessedQuestionListAdapter extends ArrayAdapter<Question> {
 
     public AssessedQuestionListAdapter(Context context,  List<Question> objects) {
-        super(context, android.R.layout.simple_list_item_1, objects);
+        super(context, android.R.layout.simple_list_item_activated_1, objects);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class AssessedQuestionListAdapter extends ArrayAdapter<Question> {
             holder = (ViewHolder) convertView.getTag();
         } else {
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+            convertView = inflater.inflate(android.R.layout.simple_list_item_activated_1, parent, false);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         }

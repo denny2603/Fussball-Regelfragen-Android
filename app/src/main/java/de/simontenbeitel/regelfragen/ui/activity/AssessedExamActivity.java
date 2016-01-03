@@ -49,16 +49,7 @@ public class AssessedExamActivity extends NavigationDrawerActivity implements As
             // activity should be in two-pane mode.
             mTwoPane = true;
 
-            // Force the system to execute pending fragment manager transactions.
-            // Otherwise the fragment manager will not be able to find the list
-            // fragment in the next step.
-//            mFragmentManager.executePendingTransactions();
-
-            // In two-pane mode, list items should be given the
-            // 'activated' state when touched.
-//            ((AssessedQuestionListFragment) mFragmentManager
-//                    .findFragmentByTag(TAG_QUESTION_LIST_FRAGMENT))
-//                    .setActivateOnItemClick(true);
+//            onItemSelected(0);
         }
 
         isCreated = true;
