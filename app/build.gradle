@@ -35,7 +35,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-v4'
     } // A material style progress wheel compatible with Android 2.3 (Apache License v2)
     compile 'com.squareup.retrofit:retrofit:1.9.0' // Interface for API calls (Apache License v2)
-    compile ('com.afollestad:material-dialogs:0.7.9.1') {
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.3@aar') {
         exclude group: 'com.android.support', module: 'support-v4'
+        transitive = true
     } // Material like dialogs for pre-lollipop (MIT License)
 }
