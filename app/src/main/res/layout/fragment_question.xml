@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/question_text"
+        style="@style/QuestionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Ein Spieler befindet sich wegen einer Verletzung außerhalb des Spielfelds und beleidigt einen Gegner, der ihn kurz zuvor gefoult hatte. Deshalb verlässt dieser das Feld und stößt den verletzten Spieler heftig zu Boden. Wie ist zu entscheiden, wenn der in unmittelbarer Nähe befindliche SR beide Vorgänge wahrgenommen hat und deshalb das Spiel unterbricht?" />
+
+    <FrameLayout
+        android:id="@+id/answer_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/question_text"
+        android:layout_marginTop="@dimen/inner_vertical_margin" />
+
+</RelativeLayout>

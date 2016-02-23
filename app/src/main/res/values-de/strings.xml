@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fußball Regelfragen</string>
+
+    <!-- Überschriften -->
+    <string name="title_singleQuestion">Einzelfragen</string>
+    <string name="title_exam">Prüfung</string>
+    <string name="title_settings">Einstellungen</string>
+
+    <!-- startup -->
+    <string name="loadUnsuccessfulMessage">Es ist ein Fehler beim Laden der Fragen aufgetreten. Bitte versuche es später noch einmal.</string>
+    <string name="loadUnsuccessfulTitle">Nicht erfolgreich</string>
+    <string name="loadingProgressMessage">Bitte warten</string>
+    <string name="loadingProgressTitle">Lade Fragen </string>
+    <string name="noQuestionsDialogDownload">Download</string>
+    <string name="noQuestionsDialogExit">Beenden</string>
+    <string name="noQuestionsDialogMessage">Du hast bisher noch keine Fragen heruntergeladen. Diese App funktioniert ohne Fragen jedoch nicht. Möchtest du die Fragen jetzt herunterladen?</string>
+    <string name="noQuestionsDialogTitle">Noch keine Fragen</string>
+
+    <!-- 	Fragen -->
+    <string name="restartMethod">Spielfortsetzung</string>
+    <string name="positionOfRestart">Ort der Fortsetzung</string>
+    <string name="disciplinarySanction">Persönliche Strafe</string>
+    <string name="solution">Lösung</string>
+    <string name="faults">Fehlerpunkte</string>
+    <string name="nextButton">Nächste</string>
+    <string name="backButton">Zurück</string>
+    <string name="handInButton">Abgabe</string>
+    <string name="solveButton">Auflösung</string>
+    <string name="newQuestionButton">Neue Frage</string>
+    <string name="default_server">Standard Server</string>
+    <string name="noMoreQuestionsTitle">Keine Fragen mehr</string>
+    <string name="noMoreQuestionsMessage">Du hast alle Fragen beantwortet. Drücke \"OK\", um die Fragen neu zu mischen.</string>
+
+    <string name="OK">OK</string>
+
+    <!-- Settings -->
+    <string name="pref_category_general">Allgemein</string>
+    <string name="pref_positionOfRestart">Ort der Fortsetzung</string>
+    <string name="pref_positionOfRestart_active">Ort der Fortsetzung abfragen</string>
+    <string name="pref_positionOfRestart_not_active">Ort der Fortsetzung nicht abfragen</string>
+    <string name="pref_statistics">Statistik</string>
+    <string name="pref_stats_active">Statistik erstellen</string>
+    <string name="pref_stats_not_active">Keine Statistik erstellen</string>
+    <string name="pref_category_difficulty">Schwierigkeit</string>
+    <string name="pref_limit_difficulties">Schwierigkeitsgrade beschränken</string>
+    <string name="pref_limit_difficulties_on">nur ausgewählte Schwierigkeitsgrade</string>
+    <string name="pref_limit_difficulties_off">alle Schwierigkeitsgrade</string>
+    <string name="pref_limit_difficulties_aspirant">Anwärter</string>
+    <string name="pref_limit_difficulties_normal">Normal</string>
+    <string name="examProgressText">Frage %1$s von %2$s</string>
+    <string name="handInDialogTitle">Abgeben</string>
+    <string name="handInDialogMessage">Bist du sicher, dass du abgeben möchtest? Danach kannst du deine Antworten nicht mehr Ändern.</string>
+    <string name="no">Nein</string>
+    <string name="yes">Ja</string>
+    <string name="exitExamDialogTitle">Prüfung Beenden</string>
+    <string name="exitExamDialogMessage">Bist du sicher, dass du die Prüfung beenden möchtest? Danach kannst du nicht mehr zurück, sondern musst die Prüfung erneut beginnen.</string>
+    <string name="questionWithNumber">Frage %1$s</string>
+    <string name="title_evaluated_exam">Auswertung</string>
+    <string name="timeElapsedDialogContinueButton">Prüfung fortsetzen</string>
+    <string name="timeElapsedDialogHandInButton">Abgeben</string>
+    <string name="timeElapsedDialogMessage">Die Zeit ist abgelaufen. Wenn du möchtest, kannst du die Prüfung dennoch fortsetzen.</string>
+    <string name="timeElapsedDialogTitle">Zeit abgelaufen</string>
+    <string name="showExplanation">Erläuterung</string>
+    <string name="wrongSolution">Falsche Lösung?</string>
+
+</resources>
