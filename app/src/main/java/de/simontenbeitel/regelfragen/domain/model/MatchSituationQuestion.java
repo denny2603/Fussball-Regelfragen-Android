@@ -32,10 +32,10 @@ public class MatchSituationQuestion extends Question {
     private String chosenPositionOfRestart;
     private String chosenDisciplinarySanction;
 
-    public MatchSituationQuestion(String text, long id,
+    public MatchSituationQuestion(long id, String text,
                                   List<String> possibleRestartMethods, List<String> possiblePositionsOfRestart, List<String> possibleDisciplinarySanctions,
                                   Collection<String> correctRestartMethods, Collection<String> correctPositionsOfRestart, Collection<String> correctDisciplinarySanctions) {
-        super(text, id);
+        super(id, text);
         this.possibleRestartMethods = possibleRestartMethods;
         this.possiblePositionsOfRestart = possiblePositionsOfRestart;
         this.possibleDisciplinarySanctions = possibleDisciplinarySanctions;

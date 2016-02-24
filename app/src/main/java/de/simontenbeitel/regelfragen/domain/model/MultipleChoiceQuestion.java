@@ -12,8 +12,8 @@ public class MultipleChoiceQuestion extends Question {
 
     private int chosenAnswerIndex;
 
-    public MultipleChoiceQuestion(String text, long id, String[] answerPossibilities, int solutionIndex) {
-        super(text, id);
+    public MultipleChoiceQuestion(long id, String text, String[] answerPossibilities, int solutionIndex) {
+        super(id, text);
         this.answerPossibilities = answerPossibilities;
         this.solutionIndex = solutionIndex;
     }
