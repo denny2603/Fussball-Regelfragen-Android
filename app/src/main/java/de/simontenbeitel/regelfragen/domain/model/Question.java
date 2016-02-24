@@ -5,18 +5,13 @@ package de.simontenbeitel.regelfragen.domain.model;
  *
  * @author Simon Tenbeitel
  */
-public abstract class Question {
+public abstract class Question extends Model{
 
-    private final long id; //id in local db
     private final String text;
 
-    public Question(String text, long id) {
+    public Question(long id, String text) {
+        super(id);
         this.text = text;
-        this.id = id;
-    }
-
-    public long getId() {
-        return id;
     }
 
     public String getText() {
