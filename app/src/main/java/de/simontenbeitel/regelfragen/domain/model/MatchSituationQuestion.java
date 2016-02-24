@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * A question where a match situation is described. The user has to determine the correct referee's decision.
  * He has to answer if the match must be paused and if so how and where to restart the match. He also has to choose the disciplinary sanction.
+ *
  * @author Simon Tenbeitel
  */
 public class MatchSituationQuestion extends Question {

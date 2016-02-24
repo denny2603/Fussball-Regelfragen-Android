@@ -1,6 +1,8 @@
 package de.simontenbeitel.regelfragen.domain.model;
 
 /**
+ * A multiple choice question like in well known quiz shows from tv.
+ *
  * @author Simon Tenbeitel
  */
 public class MultipleChoiceQuestion extends Question {
