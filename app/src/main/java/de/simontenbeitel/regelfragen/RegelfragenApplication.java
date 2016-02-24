@@ -4,6 +4,7 @@ import android.app.Application;
 
 import de.simontenbeitel.regelfragen.injection.component.DaggerApplicationComponent;
 import de.simontenbeitel.regelfragen.injection.component.ApplicationComponent;
+import de.simontenbeitel.regelfragen.injection.module.ApplicationModule;
 
 public class RegelfragenApplication extends Application {
 
@@ -16,6 +17,7 @@ public class RegelfragenApplication extends Application {
         sInstance = this;
 
         mApplicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this))
                 .build();
     }
 
