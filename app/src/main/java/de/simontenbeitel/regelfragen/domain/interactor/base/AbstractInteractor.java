@@ -1,5 +1,8 @@
 package de.simontenbeitel.regelfragen.domain.interactor.base;
 
+import javax.inject.Inject;
+
+import de.simontenbeitel.regelfragen.RegelfragenApplication;
 import de.simontenbeitel.regelfragen.threading.MainThread;
 import de.simontenbeitel.regelfragen.threading.executor.Executor;
 
@@ -15,15 +18,18 @@ import de.simontenbeitel.regelfragen.threading.executor.Executor;
  */
 public abstract class AbstractInteractor implements Interactor {
 
+    @Inject
     protected Executor mThreadExecutor;
+    @Inject
     protected MainThread mMainThread;
 
     protected volatile boolean mIsCanceled;
     protected volatile boolean mIsRunning;
 
-    public AbstractInteractor(Executor threadExecutor, MainThread mainThread) {
-        mThreadExecutor = threadExecutor;
-        mMainThread = mainThread;
+    public AbstractInteractor() {
+        RegelfragenApplication.getInstance()
+                .getApplicationComponent()
+                .inject(this);
     }
 
     /**

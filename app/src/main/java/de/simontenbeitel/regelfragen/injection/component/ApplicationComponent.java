@@ -3,12 +3,12 @@ package de.simontenbeitel.regelfragen.injection.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import de.simontenbeitel.regelfragen.threading.MainThreadImpl;
+import de.simontenbeitel.regelfragen.domain.interactor.base.AbstractInteractor;
 
 @Singleton
 @Component
 public interface ApplicationComponent {
 
-    MainThreadImpl mainThreadImpl();
+    void inject(AbstractInteractor interactor);
 
 }
