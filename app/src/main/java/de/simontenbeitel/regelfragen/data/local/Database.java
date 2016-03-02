@@ -4,6 +4,9 @@ import android.provider.BaseColumns;
 
 public class Database {
 
+    public static final int BOOLEAN_FALSE = 0;
+    public static final int BOOLEAN_TRUE = 1;
+
     public abstract static class Question {
         public static final String TABLE_NAME = "question";
 
