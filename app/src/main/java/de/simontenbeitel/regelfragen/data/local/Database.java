@@ -38,18 +38,26 @@ public class Database {
     public abstract static class MatchSituationAnswerPossibility {
         public static final String TABLE_NAME = "matchsituation_answer_possibility";
 
-        public enum Categories {
+        public enum Category {
             METHOD_OF_RESTART(0),
             POSITION_OF_RESTART(1),
             DISCIPLINARY_SANCTION(2);
 
             final int id;
-            Categories(int id) {
+            Category(int id) {
                 this.id = id;
             }
 
             public int asInt() {
                 return id;
+            }
+            public static Category fromInt(int id) {
+                switch (id) {
+                    case 0: return METHOD_OF_RESTART;
+                    case 1: return POSITION_OF_RESTART;
+                    case 2: return DISCIPLINARY_SANCTION;
+                    default: throw new IllegalArgumentException("No category for id " + id);
+                }
             }
         }
 
