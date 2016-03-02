@@ -35,8 +35,8 @@ public class Database {
                 + "FOREIGN KEY(" + Columns.QUESTION + ") REFERENCES " + Question.TABLE_NAME + "(" + Question.Columns._ID + "))";
     }
 
-    public abstract static class MatchSituationAnswer {
-        public static final String TABLE_NAME = "matchsituation_answer";
+    public abstract static class MatchSituationAnswerPossibility {
+        public static final String TABLE_NAME = "matchsituation_answer_possibility";
 
         public enum Categories {
             METHOD_OF_RESTART(0),
@@ -65,6 +65,22 @@ public class Database {
                 + Columns.CATEGORY + " INTEGER NOT NULL, "
                 + Columns.ASCENDING_ORDER + " INTEGER)";
 
+    }
+
+    public abstract static class MatchSituationAnswer {
+        public static final String TABLE_NAME = "matchsituation_answer";
+
+        public interface Columns extends BaseColumns {
+            String QUESTION = "question";
+            String ANSWER = "answer";
+        }
+
+        public static final String CREATE = "CREATE TABLE " + TABLE_NAME + "("
+                + Columns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Columns.QUESTION + " INTEGER NOT NULL, "
+                + Columns.ANSWER + " INTEGER NOT NULL, "
+                + "FOREIGN KEY(" + Columns.QUESTION + ") REFERENCES " + Question.TABLE_NAME + "(" + Question.Columns._ID + "), "
+                + "FOREIGN KEY(" + Columns.ANSWER + ") REFERENCES " + MatchSituationAnswerPossibility.TABLE_NAME + "(" + MatchSituationAnswerPossibility.Columns._ID + "))";
     }
 
 }

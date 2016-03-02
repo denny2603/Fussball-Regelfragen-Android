@@ -22,7 +22,7 @@ public class OpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Database.Question.CREATE);
         db.execSQL(Database.MultipleChoiceAnswer.CREATE);
-        db.execSQL(Database.MatchSituationAnswer.CREATE);
+        db.execSQL(Database.MatchSituationAnswerPossibility.CREATE);
     }
 
     @Override
