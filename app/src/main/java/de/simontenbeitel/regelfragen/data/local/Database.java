@@ -7,6 +7,27 @@ public class Database {
     public abstract static class Question {
         public static final String TABLE_NAME = "question";
 
+        public enum Type {
+            MATCH_SITUATION(1),
+            MULTIPLE_CHOICE(2);
+
+            final int id;
+            Type(int id) {
+                this.id = id;
+            }
+
+            public int asInt() {
+                return id;
+            }
+            public static Type fromInt(int id) {
+                switch (id) {
+                    case 0: return MATCH_SITUATION;
+                    case 1: return MULTIPLE_CHOICE;
+                    default: throw new IllegalArgumentException("No type for id " + id);
+                }
+            }
+        }
+
         public interface Columns extends BaseColumns{
             String TEXT = "text";
             String TYPE = "type";
