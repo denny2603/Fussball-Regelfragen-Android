@@ -16,11 +16,6 @@ public class MatchSituationQuestion extends Question {
         DISCIPLINARY_SANCTION
     }
 
-    // sets of possible answers for each category
-//    private final List<String> possibleRestartMethods;
-//    private final List<String> possiblePositionsOfRestart;
-//    private final List<String> possibleDisciplinarySanctions;
-
     // sets of correct answers for each category
     private final Collection<String> correctRestartMethods;
     private final Collection<String> correctPositionsOfRestart;
@@ -32,12 +27,8 @@ public class MatchSituationQuestion extends Question {
     private String chosenDisciplinarySanction;
 
     public MatchSituationQuestion(long id, String text,
-//                                  List<String> possibleRestartMethods, List<String> possiblePositionsOfRestart, List<String> possibleDisciplinarySanctions,
                                   Collection<String> correctRestartMethods, Collection<String> correctPositionsOfRestart, Collection<String> correctDisciplinarySanctions) {
         super(id, text);
-//        this.possibleRestartMethods = possibleRestartMethods;
-//        this.possiblePositionsOfRestart = possiblePositionsOfRestart;
-//        this.possibleDisciplinarySanctions = possibleDisciplinarySanctions;
         this.correctRestartMethods = correctRestartMethods;
         this.correctPositionsOfRestart = correctPositionsOfRestart;
         this.correctDisciplinarySanctions = correctDisciplinarySanctions;
