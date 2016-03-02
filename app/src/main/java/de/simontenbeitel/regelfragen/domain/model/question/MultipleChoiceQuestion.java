@@ -1,5 +1,7 @@
 package de.simontenbeitel.regelfragen.domain.model.question;
 
+import java.util.List;
+
 /**
  * A multiple choice question like in well known quiz shows from tv.
  *
@@ -7,12 +9,12 @@ package de.simontenbeitel.regelfragen.domain.model.question;
  */
 public class MultipleChoiceQuestion extends Question {
 
-    private final String[] answerPossibilities;
+    private final List<String> answerPossibilities;
     private final int solutionIndex;
 
     private int chosenAnswerIndex;
 
-    public MultipleChoiceQuestion(long id, String text, String[] answerPossibilities, int solutionIndex) {
+    public MultipleChoiceQuestion(long id, String text, List<String> answerPossibilities, int solutionIndex) {
         super(id, text);
         this.answerPossibilities = answerPossibilities;
         this.solutionIndex = solutionIndex;
@@ -25,7 +27,7 @@ public class MultipleChoiceQuestion extends Question {
      * @return true if index is within the allowed range
      */
     public boolean chooseAnswer(int index) {
-        if (0 > index || answerPossibilities.length <= index)
+        if (0 > index || answerPossibilities.size() <= index)
             return false;
         chosenAnswerIndex = index;
         return true;
@@ -39,7 +41,7 @@ public class MultipleChoiceQuestion extends Question {
         return solutionIndex;
     }
 
-    public String[] getAnswerPossibilities() {
+    public List<String> getAnswerPossibilities() {
         return answerPossibilities;
     }
 
