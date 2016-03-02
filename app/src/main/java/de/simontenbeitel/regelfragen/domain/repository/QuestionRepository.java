@@ -1,6 +1,6 @@
 package de.simontenbeitel.regelfragen.domain.repository;
 
-import de.simontenbeitel.regelfragen.domain.model.Question;
+import de.simontenbeitel.regelfragen.domain.model.question.Question;
 
 /**
  * A repository with CRUD operations on the question model.

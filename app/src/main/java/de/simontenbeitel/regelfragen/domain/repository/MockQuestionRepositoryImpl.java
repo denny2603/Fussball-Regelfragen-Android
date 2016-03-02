@@ -3,8 +3,8 @@ package de.simontenbeitel.regelfragen.domain.repository;
 import java.util.Collections;
 import java.util.HashSet;
 
-import de.simontenbeitel.regelfragen.domain.model.MatchSituationQuestion;
-import de.simontenbeitel.regelfragen.domain.model.Question;
+import de.simontenbeitel.regelfragen.domain.model.question.MatchSituationQuestion;
+import de.simontenbeitel.regelfragen.domain.model.question.Question;
 
 public class MockQuestionRepositoryImpl implements QuestionRepository {
 

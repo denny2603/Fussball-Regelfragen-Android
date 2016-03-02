@@ -1,11 +1,13 @@
-package de.simontenbeitel.regelfragen.domain.model;
+package de.simontenbeitel.regelfragen.domain.model.question;
+
+import de.simontenbeitel.regelfragen.domain.model.Model;
 
 /**
  * Root class for all kinds of questions
  *
  * @author Simon Tenbeitel
  */
-public abstract class Question extends Model{
+public abstract class Question extends Model {
 
     private final String text;
 

@@ -1,4 +1,4 @@
-package de.simontenbeitel.regelfragen.domain.model;
+package de.simontenbeitel.regelfragen.domain.model.question;
 
 /**
  * A multiple choice question like in well known quiz shows from tv.

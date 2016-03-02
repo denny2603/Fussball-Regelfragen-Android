@@ -1,7 +1,6 @@
-package de.simontenbeitel.regelfragen.domain.model;
+package de.simontenbeitel.regelfragen.domain.model.question;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * A question where a match situation is described. The user has to determine the correct referee's decision.
