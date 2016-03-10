@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import de.simontenbeitel.regelfragen.RegelfragenApplication;
 import de.simontenbeitel.regelfragen.threading.MainThread;
-import de.simontenbeitel.regelfragen.threading.executor.Executor;
+import de.simontenbeitel.regelfragen.threading.executor.impl.ThreadExecutor;
 
 /**
  * Created by dmilicic on 8/4/15.
@@ -19,7 +19,7 @@ import de.simontenbeitel.regelfragen.threading.executor.Executor;
 public abstract class AbstractInteractor implements Interactor {
 
     @Inject
-    protected Executor mThreadExecutor;
+    protected ThreadExecutor mThreadExecutor;
     @Inject
     protected MainThread mMainThread;
 
