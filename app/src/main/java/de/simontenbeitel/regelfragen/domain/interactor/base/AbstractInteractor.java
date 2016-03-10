@@ -3,7 +3,7 @@ package de.simontenbeitel.regelfragen.domain.interactor.base;
 import javax.inject.Inject;
 
 import de.simontenbeitel.regelfragen.RegelfragenApplication;
-import de.simontenbeitel.regelfragen.threading.MainThread;
+import de.simontenbeitel.regelfragen.threading.MainThreadImpl;
 import de.simontenbeitel.regelfragen.threading.executor.impl.ThreadExecutor;
 
 /**
@@ -21,7 +21,7 @@ public abstract class AbstractInteractor implements Interactor {
     @Inject
     protected ThreadExecutor mThreadExecutor;
     @Inject
-    protected MainThread mMainThread;
+    protected MainThreadImpl mMainThread;
 
     protected volatile boolean mIsCanceled;
     protected volatile boolean mIsRunning;
