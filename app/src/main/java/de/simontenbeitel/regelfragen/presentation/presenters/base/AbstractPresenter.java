@@ -1,8 +1,7 @@
 package de.simontenbeitel.regelfragen.presentation.presenters.base;
 
-
-import de.simontenbeitel.app.domain.executor.Executor;
-import de.simontenbeitel.app.domain.executor.MainThread;
+import de.simontenbeitel.regelfragen.threading.MainThread;
+import de.simontenbeitel.regelfragen.threading.executor.Executor;
 
 /**
  * This is a base class for all presenters which are communicating with interactors. This base class will hold a
@@ -16,4 +15,5 @@ public abstract class AbstractPresenter {
         mExecutor = executor;
         mMainThread = mainThread;
     }
+
 }
