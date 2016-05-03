@@ -1,0 +1,41 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:weightSum="100"
+android:background="@drawable/hintergrund"
+android:orientation="vertical" >
+
+<TextView
+    android:id="@+id/textView40"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:layout_marginLeft="35dp"
+    android:layout_marginTop="0dp"
+    android:text="Statistik"
+    android:layout_weight="12"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textColor="#000000"
+    android:gravity="center" />
+
+<android.support.v4.view.ViewPager
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pager"
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:layout_weight="85"
+    android:layout_marginTop="0dp"
+    android:layout_marginLeft="12dp"
+    android:layout_marginRight="12dp">
+
+<android.support.v4.view.PagerTitleStrip
+        android:id="@+id/pager_title_strip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:textColor="#fff"
+        android:paddingTop="0dp"
+        android:paddingBottom="4dp" />
+ 
+</android.support.v4.view.ViewPager>
+
+</LinearLayout>

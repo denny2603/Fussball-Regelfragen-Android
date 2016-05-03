@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Fußball Regelfragen</string>
+    <string name="sf">Spielfortsetzung:</string>
+    <string name="odf">Ort der Fortsetzung:</string>
+    <string name="ps">Persönliche Strafe:</string>
+	<string-array name="sfkat">
+        <item>weiterspielen</item>
+        <item>Abstoß</item>
+        <item>Anstoß</item>
+        <item>Eckstoß</item>
+        <item>Einwurf</item>
+        <item>Freistoß (direkt)</item>
+        <item>Freistoß (indirekt)</item>
+        <item>Schiedsrichterball</item>
+        <item>Strafstoß</item>
+        <item>Wiederholung</item>
+        <item>Halbzeit</item>
+        <item>Spielende</item>
+    </string-array>
+    <string-array name="odfkat">    
+        <item>weiterspielen</item>
+        <item>Mittelpunkt</item>
+        <item>Torraum</item>
+        <item>Torraumlinie</item>
+        <item>Strafraumlinie</item>
+        <item>Eckstoßteilkreis</item>
+        <item>Seitenlinie</item>
+        <item>11m Punkt</item>
+        <item>Höhe 11m Punkt</item>
+        <item>Gleicher Ort</item>
+        <item>(Tat-)Ort des Vergehens</item>
+        <item>wo getroffen/sollte</item>
+        <item>wo Ball bei Pfiff</item>
+        <item>Spielende</item>
+    </string-array>
+	<string-array name="pskat">
+        <item >keine persönliche Strafe</item>
+        <item >Gelb</item>
+        <item >Gelb/Rot</item>
+        <item >Gelb und Gelb/Rot</item>
+        <item >Rot</item>
+        <item >Nur Meldung möglich</item>
+        <item >1x Gelb / 1x Rot</item>
+        <item >2x Gelb</item>
+        <item >2x Rot</item>
+        <item >Spielabbruch</item>
+    </string-array>
+	<string name="action_settings">Einstellungen</string>
+
+</resources>

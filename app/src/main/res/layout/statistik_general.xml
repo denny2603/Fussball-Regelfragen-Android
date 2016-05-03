@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent" >
+
+<RelativeLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/linear1"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/textView44"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/linear1"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@+id/linear1"
+        android:text="Fehlerquote"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/img8"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_below="@+id/textView44"
+        android:layout_toRightOf="@+id/linear1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/textView45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView44"
+        android:layout_below="@+id/textView44"
+        android:text="127 Fragen richtig (84,67%)"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+        <ImageView
+        android:id="@+id/img9"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_below="@+id/textView45"
+        android:layout_toRightOf="@+id/linear1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView45"
+        android:layout_below="@+id/textView45"
+        android:text="23 Fragen falsch (15,33%)"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+    
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/linear1"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/linear2"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/linear2"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@+id/linear2"
+        android:text="Fehlerverteilung"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/img10"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_below="@+id/textView47"
+        android:layout_toRightOf="@+id/linear2"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView47"
+        android:layout_below="@+id/textView47"
+        android:text="18 Spielsituationsfragen (78,26%)"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+        <ImageView
+        android:id="@+id/img11"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_below="@+id/textView48"
+        android:layout_toRightOf="@+id/linear2"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView48"
+        android:layout_below="@+id/textView48"
+        android:text="5 Multiplechoicefragen (21,74%)"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    
+    
+    <LinearLayout
+        android:id="@+id/linear3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/linear2"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/linear3"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/textView50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/linear3"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@+id/linear3"
+        android:text="Spielsituationsfrage"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/img12"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_below="@+id/textView50"
+        android:layout_toRightOf="@+id/linear3"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/textView51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView50"
+        android:layout_below="@+id/textView50"
+        android:text="3 Spielfortsetzung (12%)"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+        <ImageView
+        android:id="@+id/img13"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_below="@+id/textView51"
+        android:layout_toRightOf="@+id/linear3"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/textView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView51"
+        android:layout_below="@+id/textView51"
+        android:text="15 Ort der Fortsetzung (60%)"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    <ImageView
+        android:id="@+id/img14"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_below="@+id/textView52"
+        android:layout_toRightOf="@+id/linear3"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/textView53"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView52"
+        android:layout_below="@+id/textView52"
+        android:text="7 persönliche Strafe (28%)"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    
+    
+    <LinearLayout
+        android:id="@+id/linear4"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_below="@+id/linear3"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView54"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/linear4"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@+id/linear4"
+        android:text="Bögen"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/img15"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_below="@+id/textView54"
+        android:layout_toRightOf="@+id/linear4"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView54"
+        android:layout_below="@+id/textView54"
+        android:text="3 Bestanden (75%)"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+        <ImageView
+        android:id="@+id/img16"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_below="@+id/textView55"
+        android:layout_toRightOf="@+id/linear4"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:id="@+id/textView56"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView55"
+        android:layout_below="@+id/textView55"
+        android:text="1 nicht Bestanden (25%)"
+        android:textAppearance="?android:attr/textAppearanceSmall" />    
+
+    <TextView
+        android:id="@+id/textView57"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView56"
+        android:layout_below="@+id/textView56"
+        android:text="Fehlerpunkteschnitt: 4,13"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+
+</RelativeLayout>
+</ScrollView>

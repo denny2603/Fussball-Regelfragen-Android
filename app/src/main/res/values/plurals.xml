@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="frage">
+        <item quantity="one">Frage</item>
+        <item quantity="other">Fragen</item>
+    </plurals>
+    <plurals name="spielsituationsfrage">
+        <item quantity="one">Spielsituationsfrage</item>
+        <item quantity="other">Spielsituationsfragen</item>
+    </plurals>
+    <plurals name="multiplechoicefrage">
+        <item quantity="one">Multiplechoicefrage</item>
+        <item quantity="other">Multiplechoicefragen</item>
+    </plurals>
+    <plurals name="bogen">
+        <item quantity="one">Bogen</item>
+        <item quantity="other">Bögen</item>
+    </plurals>
+</resources>

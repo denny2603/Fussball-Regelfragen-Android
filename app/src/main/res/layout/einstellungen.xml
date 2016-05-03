@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory 
+        android:title="Allgemein"
+        android:key="pref_key_general_settings">
+        <CheckBoxPreference
+            android:key="pref_key_odf_active"
+            android:summaryOff="Ort der Fortsetzung nicht abfragen"
+            android:summaryOn="Ort der Fortsetzung abfragen"
+            android:title="Ort der Forsetzung"
+            android:defaultValue="true" />
+        <CheckBoxPreference
+            android:key="pref_key_statistics_active"
+            android:summaryOff="Keine Statistik erstellen"
+            android:summaryOn="Statistik erstellen"
+            android:title="Statistik"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Schwierigkeit"
+        android:key="pref_key_difficulty">
+        <CheckBoxPreference
+            android:key="pref_key_limit_difficulties"
+            android:summaryOff="Alle Schwierigkeitsgrade"
+            android:summaryOn="nur ausgewählte Schwierigkeitsgrade"
+            android:title="Schwierigkeitsgrade beschränken"
+            android:defaultValue="false" />
+        <CheckBoxPreference
+            android:key="pref_key_anwaerter_active"
+            android:dependency="pref_key_limit_difficulties"
+            android:title="Anwärter"
+            android:defaultValue="true" />
+        <CheckBoxPreference
+            android:key="pref_key_normal_active"
+            android:dependency="pref_key_limit_difficulties"
+            android:title="Normal"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+</PreferenceScreen>
