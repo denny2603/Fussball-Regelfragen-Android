@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_drawer_einzelfragen"
+            android:title="@string/nav_drawer_einzelfragen" />
+        <item
+            android:id="@+id/nav_drawer_pruefung"
+            android:title="@string/nav_drawer_pruefung" />
+        <item
+            android:id="@+id/nav_drawer_statistik"
+            android:title="@string/nav_drawer_statistik" />
+    </group>
+
+    <item android:title="@string/nav_title_allgemein">
+        <menu>
+            <item
+                android:id="@+id/nav_drawer_impressum"
+                android:title="@string/nav_drawer_impressum" />
+            <item
+                android:id="@+id/nav_drawer_einstellungen"
+                android:title="@string/nav_drawer_einstellungen" />
+        </menu>
+    </item>
+
+</menu>

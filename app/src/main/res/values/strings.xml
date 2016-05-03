@@ -2,6 +2,13 @@
 <resources>
 
     <string name="app_name">Fußball Regelfragen</string>
+
+    <string name="nav_drawer_einzelfragen">Einzelfragen</string>
+    <string name="nav_drawer_pruefung">Prüfung</string>
+    <string name="nav_drawer_statistik">Statistik</string>
+    <string name="nav_title_allgemein">Allgemein</string>
+    <string name="nav_drawer_impressum">Impressum</string>
+    <string name="nav_drawer_einstellungen">Einstellungen</string>
     <string name="sf">Spielfortsetzung:</string>
     <string name="odf">Ort der Fortsetzung:</string>
     <string name="ps">Persönliche Strafe:</string>
