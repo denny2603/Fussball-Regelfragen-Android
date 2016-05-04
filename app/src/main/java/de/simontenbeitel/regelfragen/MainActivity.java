@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import de.simontenbeitel.regelfragen.activity.EinzelfragenActivity;
+
 public class MainActivity extends Activity implements OnClickListener{
 	Intent intent;
 	Button btn1, btn11, btn12, btn14, btn15;
@@ -118,7 +120,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		}
 		else if (arg0==btn12)
 		{
-			intent = new Intent(this, Einzelfrage.class);
+			intent = new Intent(this, EinzelfragenActivity.class);
 	    	startActivity(intent);
 		}
 		else if (arg0==btn14)
