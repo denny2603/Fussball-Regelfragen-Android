@@ -11,6 +11,11 @@
     <string name="nav_title_allgemein">Allgemein</string>
     <string name="nav_drawer_impressum">Impressum</string>
     <string name="nav_drawer_einstellungen">Einstellungen</string>
+
+    <string name="backButton">Zurück</string>
+    <string name="nextButton">Nächste</string>
+
+
     <string name="sf">Spielfortsetzung:</string>
     <string name="odf">Ort der Fortsetzung:</string>
     <string name="ps">Persönliche Strafe:</string>

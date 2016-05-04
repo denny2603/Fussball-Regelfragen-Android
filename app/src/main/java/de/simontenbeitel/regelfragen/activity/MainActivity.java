@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.fragment.EinzelfragenRootFragment;
+import de.simontenbeitel.regelfragen.fragment.ExamFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -83,26 +84,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return true;
         }
 
+        boolean selectItem = false;
         switch (id) {
             case R.id.nav_drawer_einzelfragen:
                 replaceContentFragment(new EinzelfragenRootFragment());
                 selectedItemId = id;
-                return true;
+                selectItem =  true;
+                break;
             case R.id.nav_drawer_pruefung:
-
-                return true;
+                replaceContentFragment(new ExamFragment());
+                selectedItemId = id;
+                selectItem =  true;
+                break;
             case R.id.nav_drawer_statistik:
 
-                return true;
+                selectItem =  true;
+                break;
             case R.id.nav_drawer_impressum:
 
-                return false;
+                break;
             case R.id.nav_drawer_einstellungen:
 
-                return false;
-            default:
-                return false;
+                break;
         }
+        drawer.closeDrawers();
+        return selectItem;
     }
 
     /**

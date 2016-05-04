@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import de.simontenbeitel.regelfragen.R;
 import de.simontenbeitel.regelfragen.fragment.EinzelfragenRootFragment;
 
+@Deprecated
 public class EinzelfragenActivity extends AppCompatActivity {
 
     @Override
