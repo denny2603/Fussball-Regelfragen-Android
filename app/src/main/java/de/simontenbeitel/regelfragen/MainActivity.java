@@ -38,7 +38,7 @@ public class MainActivity extends Activity implements OnClickListener{
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);				//Keine Titelleiste
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);	//Hochkant Format
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_old);
         
         random = new Random();	//Random bereits hier initialisieren (da von Zeit abhängig!!!)
         
@@ -167,7 +167,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				// arg2 entspricht der nr, die angeklickt wurde
 				startePruefung(boegen.get(arg2).getId(), boegen.get(arg2).getNr());
-				setContentView(R.layout.activity_main);	//Menü wieder aufrufen, falls man von Prüfung zurück kehrt
+				setContentView(R.layout.activity_main_old);	//Menü wieder aufrufen, falls man von Prüfung zurück kehrt
 			}
 		});
 	}
@@ -231,7 +231,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	public void onBackPressed() {
 		if (in_bogenwahl)
 		{
-			setContentView(R.layout.activity_main);
+			setContentView(R.layout.activity_main_old);
 			initialisiere();
 		}
 		else
